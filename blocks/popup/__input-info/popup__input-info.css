@@ -2,9 +2,15 @@
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     margin-bottom: 48px;
-    padding-bottom: 13px;
+    padding: 0 0 13px;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+}
+
+@media screen and (max-width:880px) {
+    .popup__input-info {
+        margin-bottom: 45px;
+    }
 }

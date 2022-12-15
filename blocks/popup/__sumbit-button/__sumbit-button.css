@@ -8,4 +8,19 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
+    transition: opacity .5s ease-in-out;
+    cursor: pointer;
+}
+
+.popup__sumbit-button:hover {
+    opacity: .8;
+}
+
+@media screen and (max-width:880px) {
+    .popup__sumbit-button {
+        width: 238px;
+        height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+    }
 }
