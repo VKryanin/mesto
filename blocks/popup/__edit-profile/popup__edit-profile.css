@@ -1,0 +1,10 @@
+.popup__edit-profile {
+    box-sizing: border-box;
+    position: relative;
+    width: 430px;
+    height: 330px;
+    background-color: #fff;
+    z-index: 4;
+    border-radius: 10px;
+    padding: 34px 36px 37px;
+}

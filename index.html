@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Место</title>
+</head>
+
+<body class="root">
+    <header class="header">
+        <img class="header__logo" src="./images/header__logo.svg" alt='Лого "Mesto Russia"'>
+    </header>
+    <main>
+        <section class="profile">
+            <div class="profile__container">
+                <img class="profile__avatar" src="./images/Jacques_Yves.jpg" alt="">
+                <div class="profile__info">
+                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <button class="profile__button-edit" title="Редактировать профиль"></button>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                </div>
+            </div>
+            <button class="profile__button-add" title="Добавить фотографию"></button>
+        </section>
+        <section class="elements">
+            <ul class="elements__list">
+                <li class="elements__element">
+                    <img class="elements__photo" src="./images/karachaevo.jpg" alt="Церковь в Карачаево">
+                    <div class="elements__info">
+                        <p class="elements__subtitle">Карачаевск</p>
+                        <button class="elements__button"></button>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__photo" src="./images/Elbrus.jpg" alt="Гора Эльбрус">
+                    <div class="elements__info">
+                        <p class="elements__subtitle">Гора Эльбрус</p>
+                        <button class="elements__button"></button>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__photo" src="./images/dombay.jpg" alt="Гора Домбай">
+                    <div class="elements__info">
+                        <p class="elements__subtitle">Домбай</p>
+                        <button class="elements__button"></button>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__photo" src="./images/Elbrus.jpg" alt="Гора Эльбрус">
+                    <div class="elements__info">
+                        <p class="elements__subtitle">Гора Эльбрус</p>
+                        <button class="elements__button"></button>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__photo" src="./images/dombay.jpg" alt="Гора Домбай">
+                    <div class="elements__info">
+                        <p class="elements__subtitle">Домбай</p>
+                        <button class="elements__button"></button>
+                    </div>
+                </li>
+                <li class="elements__element">
+                    <img class="elements__photo" src="./images/karachaevo.jpg" alt="Церковь в Карачаево">
+                    <div class="elements__info">
+                        <p class="elements__subtitle">Карачаевск</p>
+                        <button class="elements__button"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+    <div class="popup hidden">
+        <div class="popup__edit-profile">
+            <button type="button" class="popup__close-form"></button>
+            <h1 class="popup__title">Редактировать профиль</h1>
+            <form class="popup__form">
+                <input class="popup__input-name" id="user-name" placeholder="Место для имени">
+                <input class="popup__input-info" id="user-info" placeholder="Род дейтельности">
+                <button type="submit" class="popup__sumbit-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <script src="./pages/index.js"></script>
+</body>
+
+</html>

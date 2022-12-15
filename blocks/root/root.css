@@ -1,0 +1,12 @@
+.root {
+    background-color: #000;
+    width: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+.block {
+    overflow: hidden;
+}
