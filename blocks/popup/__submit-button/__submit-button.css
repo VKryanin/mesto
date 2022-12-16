@@ -1,4 +1,4 @@
-.popup__sumbit-button {
+.popup__submit-button {
     width: 358px;
     height: 50px;
     align-items: center;
@@ -12,12 +12,12 @@
     cursor: pointer;
 }
 
-.popup__sumbit-button:hover {
+.popup__submit-button:hover {
     opacity: .8;
 }
 
 @media screen and (max-width:880px) {
-    .popup__sumbit-button {
+    .popup__submit-button {
         width: 238px;
         height: 46px;
         font-size: 14px;

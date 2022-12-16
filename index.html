@@ -16,14 +16,14 @@
     <main>
         <section class="profile">
             <div class="profile__container">
-                <img class="profile__avatar" src="./images/Jacques_Yves.jpg" alt="">
+                <img class="profile__avatar" src="./images/Jacques_Yves.jpg" alt="Аватар пользователя">
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button type="submit" class="profile__button-edit" title="Редактировать профиль"></button>
+                    <button type="button" class="profile__button-edit" title="Редактировать профиль"></button>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
             </div>
-            <button type="submit" class="profile__button-add" title="Добавить фотографию"></button>
+            <button type="button" class="profile__button-add" title="Добавить фотографию"></button>
         </section>
         <section class="elements">
             <ul class="elements__list">
@@ -31,42 +31,42 @@
                     <img class="elements__photo" src="./images/karachaevo.jpg" alt="Церковь в Карачаево">
                     <div class="elements__info">
                         <p class="elements__subtitle">Карачаевск</p>
-                        <button class="elements__button"></button>
+                        <button type="button" class="elements__button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__photo" src="./images/Elbrus.jpg" alt="Гора Эльбрус">
                     <div class="elements__info">
                         <p class="elements__subtitle">Гора Эльбрус</p>
-                        <button class="elements__button"></button>
+                        <button type="button" class="elements__button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__photo" src="./images/dombay.jpg" alt="Гора Домбай">
                     <div class="elements__info">
                         <p class="elements__subtitle">Домбай</p>
-                        <button class="elements__button"></button>
+                        <button type="button" class="elements__button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__photo" src="./images/Elbrus.jpg" alt="Гора Эльбрус">
                     <div class="elements__info">
                         <p class="elements__subtitle">Гора Эльбрус</p>
-                        <button class="elements__button"></button>
+                        <button type="button" class="elements__button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__photo" src="./images/dombay.jpg" alt="Гора Домбай">
                     <div class="elements__info">
                         <p class="elements__subtitle">Домбай</p>
-                        <button class="elements__button"></button>
+                        <button type="button" class="elements__button"></button>
                     </div>
                 </li>
                 <li class="elements__element">
                     <img class="elements__photo" src="./images/karachaevo.jpg" alt="Церковь в Карачаево">
                     <div class="elements__info">
                         <p class="elements__subtitle">Карачаевск</p>
-                        <button class="elements__button"></button>
+                        <button type="button" class="elements__button"></button>
                     </div>
                 </li>
             </ul>
@@ -78,15 +78,15 @@
     <div class="popup">
         <div class="popup__container">
             <button type="button" class="popup__close-form"></button>
-            <h1 class="popup__title">Редактировать профиль</h1>
-            <form class="popup__form">
-                <input value="Жак-Ив Кусто" class="popup__input-name" id="user-name" placeholder="Место для имени">
-                <input value="Исследователь океана" class="popup__input-info" id="user-info" placeholder="Род дейтельности">
-                <button type="submit" class="popup__sumbit-button">Сохранить</button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form name="edit-profile" class="popup__form">
+                <input name="name" value="Жак-Ив Кусто" class="popup__input-name" id="user-name" placeholder="Место для имени">
+                <input name="about" value="Исследователь океана" class="popup__input-info" id="user-info" placeholder="Род дейтельности">
+                <button type="submit" class="popup__submit-button">Сохранить</button>
             </form>
         </div>
     </div>
 
-    <script src="./pages/index.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 </html>
