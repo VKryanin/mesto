@@ -6,16 +6,15 @@ let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let popupInputInfo = document.querySelector('.popup__input-info');
 let popupInputName = document.querySelector('.popup__input-name');
-let popupSumbitButton = document.querySelector('.popup__sumbit-button');
+let popupForm = document.querySelector('.popup__form');
 let popupEditProfile = document.querySelector('.popup__container');
 let elementsButton = document.querySelectorAll('.elements__button');
 
-function render() {
+function handleFormSubmit(evt) {
+    evt.preventDefault();
     profileTitle.textContent = popupInputName.value;
     profileSubtitle.textContent = popupInputInfo.value;
-    popup.classList.toggle('popup_opened');
-    root.classList.toggle('block');
-    evt.preventDefault();
+    closeForm();
 }
 
 function closeForm() {
@@ -37,6 +36,6 @@ for (let i = 0; i < elementsButton.length; i++) {
 }
 
 profileButtonEdit.addEventListener('click', openForm);
-popupSumbitButton.addEventListener('click', render);
+popupForm.addEventListener('submit', handleFormSubmit);
 popupCloseForm.addEventListener('click', closeForm);
 
