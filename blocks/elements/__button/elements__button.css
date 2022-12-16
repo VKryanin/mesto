@@ -1,5 +1,5 @@
 .elements__button {
-    background-image: url(../../../../images/like.svg);
+    background-image: url(../../../images/like.svg);
     background-color: #fff;
     border: none;
     box-sizing: border-box;
@@ -13,4 +13,8 @@
 
 .elements__button:hover {
     opacity: .6;
+}
+
+.elements__button-active {
+    background-image: url(../../../images/Black_like.svg);
 }

@@ -19,7 +19,7 @@
                 <img class="profile__avatar" src="./images/Jacques_Yves.jpg" alt="">
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button class="profile__button-edit" title="Редактировать профиль"></button>
+                    <button type="sumbit" class="profile__button-edit" title="Редактировать профиль"></button>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
             </div>
@@ -76,16 +76,17 @@
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
     <div class="popup hidden">
-        <div class="popup__edit-profile">
+        <div class="popup__edit-profile hidden">
             <button type="button" class="popup__close-form"></button>
             <h1 class="popup__title">Редактировать профиль</h1>
             <form class="popup__form">
                 <input value="Жак-Ив Кусто" class="popup__input-name" id="user-name" placeholder="Место для имени">
                 <input value="Исследователь океана" class="popup__input-info" id="user-info" placeholder="Род дейтельности">
-                <button type="button" class="popup__sumbit-button">Сохранить</button>
+                <button type="button" type="sumbit" class="popup__sumbit-button">Сохранить</button>
             </form>
         </div>
     </div>
+
     <script src="./pages/index.js"></script>
 </body>
 </html>

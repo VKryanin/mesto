@@ -1,34 +1,43 @@
 let root = document.querySelector('.root')
-let popup__closeForm = document.querySelector('.popup__close-form');
+let popupCloseForm = document.querySelector('.popup__close-form');
 let popup = document.querySelector('.popup');
-let profile__buttonEdit = document.querySelector('.profile__button-edit');
-let profile__title = document.querySelector('.profile__title');
-let profile__subtitle = document.querySelector('.profile__subtitle')
-let popup__inputInfo = document.querySelector('.popup__input-info')
-let popup__inputName = document.querySelector('.popup__input-name')
-let popup__sumbitButton = document.querySelector('.popup__sumbit-button')
+let profileButtonEdit = document.querySelector('.profile__button-edit');
+let profileTitle = document.querySelector('.profile__title');
+let profileSubtitle = document.querySelector('.profile__subtitle');
+let popupInputInfo = document.querySelector('.popup__input-info');
+let popupInputName = document.querySelector('.popup__input-name');
+let popupSumbitButton = document.querySelector('.popup__sumbit-button');
+let popupEditProfile = document.querySelector('.popup__edit-profile');
+let elementsButton = document.querySelectorAll('.elements__button');
 
 function render() {
-    profile__title.textContent = popup__inputName.value;
-    profile__subtitle.textContent = popup__inputInfo.value;
+    profileTitle.textContent = popupInputName.value;
+    profileSubtitle.textContent = popupInputInfo.value;
     popup.classList.toggle('hidden');
     root.classList.toggle('block');
+    evt.preventDefault();
 }
 
-function closeForm () {
+function closeForm() {
     popup.classList.add('hidden');
     root.classList.remove('block');
+    evt.preventDefault();
 };
 
-function openForm () {
+function openForm() {
     popup.classList.remove('hidden');
     root.classList.add('block');
+    popupEditProfile.classList.remove('hidden');
+    evt.preventDefault();
 }
 
+for (let i = 0; i < elementsButton.length; i++) {
+    elementsButton[i].addEventListener('click', function(){
+        this.classList.toggle('elements__button-active')
+    })
+}
 
-
-console.log(profile__title)
-profile__buttonEdit.addEventListener('click', openForm);
-popup__sumbitButton.addEventListener('click', render);
-popup__closeForm.addEventListener('click', closeForm);
+profileButtonEdit.addEventListener('click', openForm);
+popupSumbitButton.addEventListener('click', render);
+popupCloseForm.addEventListener('click', closeForm);
 
