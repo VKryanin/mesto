@@ -19,13 +19,11 @@ function handleFormSubmit(evt) {
 
 function closeForm() {
     popup.classList.remove('popup_opened');
-    root.classList.remove('block');
     evt.preventDefault();
 };
 
 function openForm() {
     popup.classList.add('popup_opened');
-    root.classList.add('block');
     evt.preventDefault();
 }
 
