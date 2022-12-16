@@ -36,6 +36,6 @@
 @import url(../blocks/popup/__close-form/popup__close-form.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__sumbit-button/__sumbit-button.css);
-@import url(../blocks/popup/__edit-profile/popup__edit-profile.css);
+@import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__input-name/popup__input-name.css);
 @import url(../blocks/popup/__input-info/popup__input-info.css);

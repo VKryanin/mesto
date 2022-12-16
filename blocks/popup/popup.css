@@ -6,11 +6,11 @@
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, .5);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
 
-.hidden {
-    display: none;
+.popup_opened {
+    display: flex;
 }
