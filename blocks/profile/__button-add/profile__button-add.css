@@ -4,7 +4,7 @@
     align-self:center;
     border: 2px solid #fff;
     background-color: #000;
-    background-image: url(../../../../images/plus.svg);
+    background-image: url(../../../images/plus.svg);
     background-repeat: no-repeat;
     background-position: center;
     transition: opacity .5s ease-in-out;
