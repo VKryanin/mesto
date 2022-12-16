@@ -8,7 +8,6 @@
     background-size: auto;
     background-position: center;
     cursor: pointer;
-    color: none;
     border: 1px solid #fff;
     transition: opacity .5s ease-in-out;
 }
