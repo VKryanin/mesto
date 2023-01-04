@@ -26,6 +26,7 @@
 @import url(../blocks/elements/__info/elements__info.css);
 @import url(../blocks/elements/__subtitle/elements__subtitle.css);
 @import url(../blocks/elements/__button/elements__button.css);
+@import url(../blocks/elements/__delete/elements__delete.css);
 
 /* footer  */
 @import url(../blocks/footer/footer.css);

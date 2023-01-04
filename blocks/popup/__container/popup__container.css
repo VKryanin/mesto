@@ -7,8 +7,12 @@
     z-index: 4;
     border-radius: 10px;
     padding: 34px 36px 37px;
+    /* display: none; */
 }
 
+.popup__container-opened {
+    display: flex;
+}
 
 @media screen and (max-width:880px) {
     .popup__container {
