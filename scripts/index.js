@@ -1,6 +1,9 @@
-let popupCloseForm = document.querySelector('.popup__close-form');
+let popupCloseForm = document.querySelector('.close-edit');
+let popupCloseAdd = document.querySelector('.close-add');
+let popupCloseImage = document.querySelector('.close-image');
 let popup = document.querySelector('.popup');
-let popupForm = document.querySelector('.popup__form');
+let editForm = document.querySelector('.edit-form');
+let addForm = document.querySelector('.add-form');
 let popupEditProfile = document.querySelector('.popup__edit-profile');
 let popupAddCard = document.querySelector('.popup__add-card')
 let profileButtonEdit = document.querySelector('.profile__button-edit');
@@ -11,7 +14,8 @@ let popupInputName = document.querySelector('.popup__input-name');
 let popupInputInfo = document.querySelector('.popup__input-info');
 let popupInputPlace = document.querySelector('.popup__input-place')
 let popupInputLink = document.querySelector('.popup__input-link')
-let popupSubmitButton = document.querySelector('.popup__submit-button')
+let popupSubmitEdit = document.querySelector('.send-edit')
+let popupSubmitAdd = document.querySelector('.send-add')
 let elementsList = document.querySelector('.elements__list')
 let elementsElement = document.querySelector('.elements__element')
 let elementsDelete = document.querySelectorAll('.elements__delete')
@@ -63,6 +67,7 @@ for (let i = 0; i < elementsPhoto.length; i++) {
         popupImage.src = elementsPhoto[i].src;
         popupSubtitle.textContent = elementsPhoto[i].nextElementSibling.textContent;
         openForm(popupFullscreen, 'popup__fullscreen_opened');
+        popupCloseImage.addEventListener('click',() => {closeForm(popupFullscreen, 'popup__fullscreen_opened')})
     })
 }
 
@@ -73,21 +78,21 @@ for (let i = 0; i < elementsList.children.length; i++) {
 
 function EditProfile() {
     openForm(popupEditProfile, 'popup__edit-profile-opened');
-    popupForm.addEventListener('submit', handleFormSubmit);
-    popupCloseForm.addEventListener('click', ()=>closeForm(popupEditProfile, 'popup__edit-profile-opened'));
+    editForm.addEventListener('submit', handleFormSubmit);
+    popupCloseForm.addEventListener('click', () => closeForm(popupEditProfile, 'popup__edit-profile-opened'));
 }
 
 function handleFormSubmit(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupInputName.value;
     profileSubtitle.textContent = popupInputInfo.value;
-    popupSubmitButton.addEventListener('click', closeForm(popupEditProfile, 'popup__edit-profile-opened'));
+    popupSubmitEdit.addEventListener('click', closeForm(popupEditProfile, 'popup__edit-profile-opened'));
 }
 
 function addCard() {
     openForm(popupAddCard, 'popup__add-card-opened');
-    popupForm.addEventListener('submit', addNewCard);
-    popupCloseForm.addEventListener('click', ()=>closeForm(popupAddCard, 'popup__add-card-opened'));
+    addForm.addEventListener('submit', addNewCard);
+    popupCloseAdd.addEventListener('click', () => closeForm(popupAddCard, 'popup__add-card-opened'));
 }
 
 function addNewCard(evt) {
@@ -97,13 +102,14 @@ function addNewCard(evt) {
     elementsList.children[0].querySelector('p').textContent = popupInputPlace.value;
     elementsList.children[0].querySelector('img').src = popupInputLink.value;
     elementsList.append(elementCopy);
-    popupSubmitButton.addEventListener('click', closeForm(popupAddCard, 'popup__add-card-opened'));
+    popupSubmitAdd.addEventListener('click', closeForm(popupAddCard, 'popup__add-card-opened'));
+
+
 }
 
 function closeForm(block, active) {
     block.classList.remove(active);
     popup.classList.remove('popup_opened');
-    console.log('test')
 };
 
 function openForm(module, modified) {
@@ -113,4 +119,3 @@ function openForm(module, modified) {
 
 profileButtonEdit.addEventListener('click', EditProfile);
 profileButtonAdd.addEventListener('click', addCard)
-popupCloseForm.addEventListener('click', () => (console.log('q')))

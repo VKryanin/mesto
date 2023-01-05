@@ -85,29 +85,29 @@
     </footer>
     <div class="popup">
         <div class="popup__container popup__edit-profile">
-            <button type="button" class="popup__close-form"></button>
+            <button type="button" class="popup__close-form close-edit"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="edit-profile" class="popup__form">
+            <form name="edit-profile" class="popup__form edit-form">
                 <input name="name" value="Жак-Ив Кусто" class="popup__input popup__input-name" id="user-name"
                     placeholder="Место для имени">
                 <input name="about" value="Исследователь океана" class="popup__input popup__input-info" id="user-info"
                     placeholder="Род дейтельности">
-                <button type="submit" class="popup__submit-button">Сохранить</button>
+                <button type="submit" class="popup__submit-button send-edit">Сохранить</button>
             </form>
         </div>
         <div class="popup__container popup__add-card">
-            <button type="button" class="popup__close-form"></button>
+            <button type="button" class="popup__close-form close-add"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form name="add-card" class="popup__form">
+            <form name="add-card" class="popup__form add-form">
                 <input name="name" class="popup__input popup__input-place" id="card-name" placeholder="Название">
                 <input name="link" class="popup__input popup__input-link" id="link"
                     placeholder="Ссылка на картинку">
-                <button type="submit" class="popup__submit-button">Создать</button>
+                <button type="submit" class="popup__submit-button send-add">Создать</button>
             </form>
         </div>
         <div class="popup__container popup__fullscreen">
             <figure class="popup__photo">
-                <button type="button" class="popup__close-form"></button>
+                <button type="button" class="popup__close-form close-image"></button>
                 <img class="popup__image" src="" alt="Крупный план" />
                 <figcaption class="popup__subtitle"></figcaption>
             </figure>
