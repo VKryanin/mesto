@@ -9,6 +9,7 @@
     border: none;
     transition: opacity .5s ease-in-out;
     cursor: pointer;
+    z-index: 10;
 }
 
 .popup__close-form:hover {

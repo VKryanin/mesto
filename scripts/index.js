@@ -1,20 +1,25 @@
-let root = document.querySelector('.root')
 let popupCloseForm = document.querySelector('.popup__close-form');
 let popup = document.querySelector('.popup');
 let popupForm = document.querySelector('.popup__form');
-let popupEditProfile = document.querySelector('.popup__container');
+let popupEditProfile = document.querySelector('.popup__edit-profile');
+let popupAddCard = document.querySelector('.popup__add-card')
 let profileButtonEdit = document.querySelector('.profile__button-edit');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileButtonAdd = document.querySelector('.profile__button-add')
-let popupInputInfo = document.querySelector('.popup__input-info');
 let popupInputName = document.querySelector('.popup__input-name');
-let elementsButton = document.querySelectorAll('.elements__button');
+let popupInputInfo = document.querySelector('.popup__input-info');
+let popupInputPlace = document.querySelector('.popup__input-place')
+let popupInputLink = document.querySelector('.popup__input-link')
+let popupSubmitButton = document.querySelector('.popup__submit-button')
 let elementsList = document.querySelector('.elements__list')
 let elementsElement = document.querySelector('.elements__element')
-let popupTitle = document.querySelector('.popup__title')
-let submitButton = document.querySelector('.popup__submit-button')
 let elementsDelete = document.querySelectorAll('.elements__delete')
+let elementsButton = document.querySelectorAll('.elements__button');
+let elementsPhoto = document.querySelectorAll('.elements__photo')
+let popupFullscreen = document.querySelector('.popup__fullscreen')
+let popupImage = document.querySelector('.popup__image')
+let popupSubtitle = document.querySelector('.popup__subtitle')
 
 const initialCards = [
     {
@@ -43,8 +48,8 @@ const initialCards = [
     }
 ];
 
-for (let i=0; i < elementsDelete.length; i++) {
-    elementsDelete[i].onclick = () => {elementsDelete[i].parentElement.remove()}
+for (let i = 0; i < elementsDelete.length; i++) {
+    elementsDelete[i].onclick = () => { elementsDelete[i].parentElement.remove() }
 }
 
 for (let i = 0; i < elementsButton.length; i++) {
@@ -53,73 +58,59 @@ for (let i = 0; i < elementsButton.length; i++) {
     })
 }
 
-function EditProfile() {
-    EditFormItems = {
-        title: 'Редактировать профиль',
-        inputName: popupInputName.value,
-        inpupInfo: popupInputInfo.value,
-        button: 'Сохранить'
-    };
-    popupTitle.textContent = EditFormItems.title;
-    popupInputName.value = EditFormItems.inputName;
-    popupInputInfo.value = EditFormItems.inpupInfo;
-    submitButton.textContent = EditFormItems.button
-    openForm();
-    popupForm.addEventListener('submit', handleFormSubmit);
-    popupCloseForm.addEventListener('click', closeForm);
+for (let i = 0; i < elementsPhoto.length; i++) {
+    elementsPhoto[i].addEventListener('click', function () {
+        popupImage.src = elementsPhoto[i].src;
+        popupSubtitle.textContent = elementsPhoto[i].nextElementSibling.textContent;
+        openForm(popupFullscreen, 'popup__fullscreen_opened');
+    })
 }
-
-function closeForm(evt) {
-    popup.classList.remove('popup_opened');
-    evt.preventDefault();
-};
-
-function openForm(evt) {
-    popup.classList.add('popup_opened');
-    // evt.preventDefault();
-}
-
-function handleFormSubmit(evt) {
-    evt.preventDefault();
-    profileTitle.textContent = popupInputName.value;
-    profileSubtitle.textContent = popupInputInfo.value;
-    closeForm();
-    return popupInputName.value, popupInputInfo.value
-
-}
-
-function addCard() {
-    EditFormItems = {
-        title: 'Новое место',
-        inputName: 'Название',
-        inpupInfo: 'Ссылка на картинку',
-        button: 'Создать'
-    };
-    popupTitle.textContent = EditFormItems.title;
-    popupInputName.placeholder = EditFormItems.inputName;
-    popupInputInfo.placeholder = EditFormItems.inpupInfo;
-    popupInputName.value = '';
-    popupInputInfo.value = '';
-    submitButton.textContent = EditFormItems.button;
-    openForm();
-    popupForm.addEventListener('submit', addNewCard);
-    popupCloseForm.addEventListener('click', closeForm);
-}
-
-function addNewCard(evt) {
-    evt.preventDefault();
-    const elementCopy = elementsElement.cloneNode(true);
-    elementsList.children[0].querySelector('p').textContent = popupInputName.value;
-    elementsList.children[0].querySelector('img').src = popupInputInfo.value;
-    elementsList.append(elementCopy);
-    closeForm();
-}
-
-profileButtonEdit.addEventListener('click', EditProfile);
-profileButtonAdd.addEventListener('click', addCard)
 
 for (let i = 0; i < elementsList.children.length; i++) {
     elementsList.children[i].querySelector('p').textContent = initialCards[i].name;
     elementsList.children[i].querySelector('img').src = initialCards[i].link;
 }
 
+function EditProfile() {
+    openForm(popupEditProfile, 'popup__edit-profile-opened');
+    popupForm.addEventListener('submit', handleFormSubmit);
+    popupCloseForm.addEventListener('click', ()=>closeForm(popupEditProfile, 'popup__edit-profile-opened'));
+}
+
+function handleFormSubmit(evt) {
+    evt.preventDefault();
+    profileTitle.textContent = popupInputName.value;
+    profileSubtitle.textContent = popupInputInfo.value;
+    popupSubmitButton.addEventListener('click', closeForm(popupEditProfile, 'popup__edit-profile-opened'));
+}
+
+function addCard() {
+    openForm(popupAddCard, 'popup__add-card-opened');
+    popupForm.addEventListener('submit', addNewCard);
+    popupCloseForm.addEventListener('click', ()=>closeForm(popupAddCard, 'popup__add-card-opened'));
+}
+
+function addNewCard(evt) {
+    evt.preventDefault();
+    const elementCopy = elementsElement.cloneNode(true);
+    console.log(elementsList.length)
+    elementsList.children[0].querySelector('p').textContent = popupInputPlace.value;
+    elementsList.children[0].querySelector('img').src = popupInputLink.value;
+    elementsList.append(elementCopy);
+    popupSubmitButton.addEventListener('click', closeForm(popupAddCard, 'popup__add-card-opened'));
+}
+
+function closeForm(block, active) {
+    block.classList.remove(active);
+    popup.classList.remove('popup_opened');
+    console.log('test')
+};
+
+function openForm(module, modified) {
+    popup.classList.add('popup_opened')
+    module.classList.add(modified);
+}
+
+profileButtonEdit.addEventListener('click', EditProfile);
+profileButtonAdd.addEventListener('click', addCard)
+popupCloseForm.addEventListener('click', () => (console.log('q')))

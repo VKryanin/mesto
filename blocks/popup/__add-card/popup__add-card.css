@@ -1,0 +1,27 @@
+.popup__add-card {
+    visibility: hidden;
+    z-index: 1;
+    position: fixed;
+    top: 195px;
+    right: 425px;
+    background-color: #fff;
+    padding: 34px 36px 37px;
+    box-sizing: border-box;
+    width: 430px;
+    height: 330px;
+    border-radius: 10px;
+}
+
+.popup__add-card-opened {
+    visibility: visible;
+    z-index: 3;
+}
+
+@media screen and (max-width:880px) {
+    .popup__add-card-opened {
+        width: 282px;
+        height: 322px;
+        padding: 25px 22px 25px;
+        margin: 123px auto;
+    }
+}
