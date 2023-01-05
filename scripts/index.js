@@ -98,13 +98,13 @@ function addCard() {
 function addNewCard(evt) {
     evt.preventDefault();
     const elementCopy = elementsElement.cloneNode(true);
-    console.log(elementsList.length)
-    elementsList.children[0].querySelector('p').textContent = popupInputPlace.value;
-    elementsList.children[0].querySelector('img').src = popupInputLink.value;
-    elementsList.append(elementCopy);
+    elementCopy.querySelector('.elements__subtitle').textContent = popupInputPlace.value;
+    elementCopy.querySelector('.elements__photo').src = popupInputLink.value;
+    elementCopy.querySelector('.elements__button').classList.remove('elements__button-active');
+    elementCopy.querySelector('.elements__delete').addEventListener('click', (item)=>{item.target.parentElement.remove()});
+    elementCopy.querySelector('.elements__button').addEventListener('click', (item)=>{item.target.classList.toggle('elements__button-active')});
+    elementsList.insertBefore(elementCopy, elementsList.children[0]);
     popupSubmitAdd.addEventListener('click', closeForm(popupAddCard, 'popup__add-card-opened'));
-
-
 }
 
 function closeForm(block, active) {
