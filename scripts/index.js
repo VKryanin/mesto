@@ -70,7 +70,7 @@ const initialCards = [
 //     })
 // }
 
-
+for (let i = 0; i < initialCards.length; i++) {
     const elementsElement = document.createElement('li');
     elementsElement.className = ('elements__element');
     const elementsPhoto = document.createElement('img');
@@ -86,7 +86,6 @@ const initialCards = [
     elementsElement.append(elementsPhoto, elementsInfo, elementsDelete)
     elementsInfo.append(elementsSubtitle, elementsButton)
     elementsList.append(elementsElement)
-    for (let i = 0; i < initialCards.length; i++) {
     elementsList.children[i].querySelector('p').textContent = initialCards[i].name;
     elementsList.children[i].querySelector('img').src = initialCards[i].link;
 }
@@ -106,29 +105,24 @@ function handleFormSubmit(evt) {
 
 function addCard() {
     openForm(popupAddCard, 'popup__add-card-opened');
-    addForm.addEventListener('submit', addNewCard);
+    addForm.addEventListener('submit', e => {e.preventDefault(); addNewCard(popupInputPlace.value, popupInputLink.value)});
     popupCloseAdd.addEventListener('click', () => closeForm(popupAddCard, 'popup__add-card-opened'));
 }
 
-{/* <li class="elements__element">
-    <img class="elements__photo" src="./images/karachaevo.jpg" alt="Церковь в Карачаево">
-        <div class="elements__info">
-            <p class="elements__subtitle">Карачаевск</p>
-            <button type="button" class="elements__button"></button>
-        </div>
-        <button type="button" class="elements__delete"></button>
-</li> */}
-
-function addNewCard(evt) {
-    evt.preventDefault();
+function addNewCard( place, link) {
     const elementsElement = document.createElement('li').className = ('elements__element');
     const elementsPhoto = document.createElement('img').className = ('elements__photo');
+    elementsPhoto.src = link;
     const elementsInfo = document.createElement('div').className = ('elements__info');
     const elementsSubtitle = document.createElement('p').className = ('elements__subtitle');
+    elementsSubtitle.textContent = place;
     const elementsButton = document.createElement('button').className = ('elements__button');
     const elementsDelete = document.createElement('button').className = ('elements__delete');
-    elementsElement.append(elementsPhoto, elementsInfo, elementsDelete)
-    elementsInfo.append(elementsSubtitle, elementsButton)
+    elementsList.append(elementsElement);
+    elementsInfo.append(elementsSubtitle, elementsButton);
+    elementsElement.append(elementsPhoto, elementsInfo, elementsDelete);
+    
+    
 }
 
 
