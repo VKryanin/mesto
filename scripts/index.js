@@ -17,10 +17,9 @@ let popupInputLink = document.querySelector('.popup__input-link')
 let popupSubmitEdit = document.querySelector('.send-edit')
 let popupSubmitAdd = document.querySelector('.send-add')
 let elementsList = document.querySelector('.elements__list')
-let elementsElement = document.querySelector('.elements__element')
-let elementsDelete = document.querySelectorAll('.elements__delete')
-let elementsButton = document.querySelectorAll('.elements__button');
-let elementsPhoto = document.querySelectorAll('.elements__photo')
+// let elementsDelete = document.querySelectorAll('.elements__delete')
+// let elementsButton = document.querySelectorAll('.elements__button');
+// let elementsPhoto = document.querySelectorAll('.elements__photo')
 let popupFullscreen = document.querySelector('.popup__fullscreen')
 let popupImage = document.querySelector('.popup__image')
 let popupSubtitle = document.querySelector('.popup__subtitle')
@@ -52,26 +51,42 @@ const initialCards = [
     }
 ];
 
-for (let i = 0; i < elementsDelete.length; i++) {
-    elementsDelete[i].onclick = () => { elementsDelete[i].parentElement.remove() }
-}
+// for (let i = 0; i < elementsDelete.length; i++) {
+//     elementsDelete[i].onclick = () => { elementsDelete[i].parentElement.remove() }
+// }
 
-for (let i = 0; i < elementsButton.length; i++) {
-    elementsButton[i].addEventListener('click', function () {
-        this.classList.toggle('elements__button-active')
-    })
-}
+// for (let i = 0; i < elementsButton.length; i++) {
+//     elementsButton[i].addEventListener('click', function () {
+//         this.classList.toggle('elements__button-active')
+//     })
+// }
 
-for (let i = 0; i < elementsPhoto.length; i++) {
-    elementsPhoto[i].addEventListener('click', function () {
-        popupImage.src = elementsPhoto[i].src;
-        popupSubtitle.textContent = elementsPhoto[i].nextElementSibling.textContent;
-        openForm(popupFullscreen, 'popup__fullscreen_opened');
-        popupCloseImage.addEventListener('click',() => {closeForm(popupFullscreen, 'popup__fullscreen_opened')})
-    })
-}
+// for (let i = 0; i < elementsPhoto.length; i++) {
+//     elementsPhoto[i].addEventListener('click', function () {
+//         popupImage.src = elementsPhoto[i].src;
+//         popupSubtitle.textContent = elementsPhoto[i].nextElementSibling.textContent;
+//         openForm(popupFullscreen, 'popup__fullscreen_opened');
+//         popupCloseImage.addEventListener('click', () => { closeForm(popupFullscreen, 'popup__fullscreen_opened') })
+//     })
+// }
 
-for (let i = 0; i < elementsList.children.length; i++) {
+
+    const elementsElement = document.createElement('li');
+    elementsElement.className = ('elements__element');
+    const elementsPhoto = document.createElement('img');
+    elementsPhoto.className = ('elements__photo');
+    const elementsInfo = document.createElement('div');
+    elementsInfo.className = ('elements__info');
+    const elementsSubtitle = document.createElement('p');
+    elementsSubtitle.className = ('elements__subtitle');
+    const elementsButton = document.createElement('button');
+    elementsButton.className = ('elements__button');
+    const elementsDelete = document.createElement('button');
+    elementsDelete.className = ('elements__delete');
+    elementsElement.append(elementsPhoto, elementsInfo, elementsDelete)
+    elementsInfo.append(elementsSubtitle, elementsButton)
+    elementsList.append(elementsElement)
+    for (let i = 0; i < initialCards.length; i++) {
     elementsList.children[i].querySelector('p').textContent = initialCards[i].name;
     elementsList.children[i].querySelector('img').src = initialCards[i].link;
 }
@@ -95,17 +110,39 @@ function addCard() {
     popupCloseAdd.addEventListener('click', () => closeForm(popupAddCard, 'popup__add-card-opened'));
 }
 
+{/* <li class="elements__element">
+    <img class="elements__photo" src="./images/karachaevo.jpg" alt="Церковь в Карачаево">
+        <div class="elements__info">
+            <p class="elements__subtitle">Карачаевск</p>
+            <button type="button" class="elements__button"></button>
+        </div>
+        <button type="button" class="elements__delete"></button>
+</li> */}
+
 function addNewCard(evt) {
+    evt.preventDefault();
+    const elementsElement = document.createElement('li').className = ('elements__element');
+    const elementsPhoto = document.createElement('img').className = ('elements__photo');
+    const elementsInfo = document.createElement('div').className = ('elements__info');
+    const elementsSubtitle = document.createElement('p').className = ('elements__subtitle');
+    const elementsButton = document.createElement('button').className = ('elements__button');
+    const elementsDelete = document.createElement('button').className = ('elements__delete');
+    elementsElement.append(elementsPhoto, elementsInfo, elementsDelete)
+    elementsInfo.append(elementsSubtitle, elementsButton)
+}
+
+
+{/* function addNewCard(evt) {
     evt.preventDefault();
     const elementCopy = elementsElement.cloneNode(true);
     elementCopy.querySelector('.elements__subtitle').textContent = popupInputPlace.value;
     elementCopy.querySelector('.elements__photo').src = popupInputLink.value;
     elementCopy.querySelector('.elements__button').classList.remove('elements__button-active');
-    elementCopy.querySelector('.elements__delete').addEventListener('click', (item)=>{item.target.parentElement.remove()});
-    elementCopy.querySelector('.elements__button').addEventListener('click', (item)=>{item.target.classList.toggle('elements__button-active')});
+    elementCopy.querySelector('.elements__delete').addEventListener('click', (item) => { item.target.parentElement.remove() });
+    elementCopy.querySelector('.elements__button').addEventListener('click', (item) => { item.target.classList.toggle('elements__button-active') });
     elementsList.insertBefore(elementCopy, elementsList.children[0]);
     popupSubmitAdd.addEventListener('click', closeForm(popupAddCard, 'popup__add-card-opened'));
-}
+} */}
 
 function closeForm(block, active) {
     block.classList.remove(active);
