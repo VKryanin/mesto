@@ -120,7 +120,6 @@ function openPopup(popup, module, modified) {
     module.classList.add(modified);
 }
 
-
 popupCloseAdd.addEventListener('click', () => closePopup(idAddCard, popupAddCard, 'popup__add-card-opened'));
 profileButtonEdit.addEventListener('click', openEditProfilePopup);
 profileButtonAdd.addEventListener('click', addCard)
