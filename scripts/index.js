@@ -54,26 +54,26 @@ for (let i = 0; i < initialCards.length; i++) {
 }
 
 function openEditProfilePopup() {
-    openForm(idEditProfile, popupEditProfile, 'popup__edit-profile-opened');
+    openPopup(idEditProfile, popupEditProfile, 'popup__edit-profile-opened');
     formEdit.addEventListener('submit', profileEdit);
-    popupCloseForm.addEventListener('click', () => closeForm(idEditProfile, popupEditProfile, 'popup__edit-profile-opened'));
+    popupCloseForm.addEventListener('click', () => closePopup(idEditProfile, popupEditProfile, 'popup__edit-profile-opened'));
 }
 
 function profileEdit(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupInputName.value;
     profileSubtitle.textContent = popupInputInfo.value;
-    popupSubmitEdit.addEventListener('click', closeForm(idEditProfile, popupEditProfile, 'popup__edit-profile-opened'));
+    popupSubmitEdit.addEventListener('click', closePopup(idEditProfile, popupEditProfile, 'popup__edit-profile-opened'));
 }
 
 formAdd.addEventListener('submit', e => {
     e.preventDefault();
     appendCard(createCard(popupInputPlace.value, popupInputLink.value), cardsContainer);
-    popupInputPlace.value = '', popupInputLink.value = ''; closeForm(idAddCard, popupAddCard, 'popup__add-card-opened')
+    popupInputPlace.value = '', popupInputLink.value = ''; closePopup(idAddCard, popupAddCard, 'popup__add-card-opened')
 });
 
 function addCard() {
-    openForm(idAddCard, popupAddCard, 'popup__add-card-opened');
+    openPopup(idAddCard, popupAddCard, 'popup__add-card-opened');
 }
 
 function createCard(place, link) {
@@ -86,8 +86,8 @@ function createCard(place, link) {
     elementsPhoto.addEventListener('click', function () {
         popupImage.src = elementsPhoto.src;
         popupSubtitle.textContent = elementsPhoto.nextElementSibling.textContent;
-        openForm(idFullscreen, popupFullscreen, 'popup__fullscreen_opened');
-        popupCloseImage.addEventListener('click', () => { closeForm(idFullscreen, popupFullscreen, 'popup__fullscreen_opened') })
+        openPopup(idFullscreen, popupFullscreen, 'popup__fullscreen_opened');
+        popupCloseImage.addEventListener('click', () => { closePopup(idFullscreen, popupFullscreen, 'popup__fullscreen_opened') })
     })
 
     const elementsInfo = document.createElement('div');
@@ -110,17 +110,17 @@ function appendCard(card, list) {
     list.insertBefore(card, list.children[0]);
 }
 
-function closeForm(popup, block, active) {
+function closePopup(popup, block, active) {
     block.classList.remove(active);
     popup.classList.remove('popup_opened');
 };
 
-function openForm(popup, module, modified) {
+function openPopup(popup, module, modified) {
     popup.classList.add('popup_opened')
     module.classList.add(modified);
 }
 
 
-popupCloseAdd.addEventListener('click', () => closeForm(idAddCard, popupAddCard, 'popup__add-card-opened'));
+popupCloseAdd.addEventListener('click', () => closePopup(idAddCard, popupAddCard, 'popup__add-card-opened'));
 profileButtonEdit.addEventListener('click', openEditProfilePopup);
 profileButtonAdd.addEventListener('click', addCard)
