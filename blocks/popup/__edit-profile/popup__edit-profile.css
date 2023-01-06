@@ -11,6 +11,7 @@
     width: 430px;
     height: 330px;
     border-radius: 10px;
+    transition: visibility .7s ease-in-out;
 }
 
 .popup__edit-profile-opened {
