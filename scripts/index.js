@@ -51,16 +51,6 @@ const initialCards = [
     }
 ];
 
-// for (let i = 0; i < elementsDelete.length; i++) {
-//     elementsDelete[i].onclick = () => { elementsDelete[i].parentElement.remove() }
-// }
-
-// for (let i = 0; i < elementsButton.length; i++) {
-//     elementsButton[i].addEventListener('click', function () {
-//         this.classList.toggle('elements__button-active')
-//     })
-// }
-
 // for (let i = 0; i < elementsPhoto.length; i++) {
 //     elementsPhoto[i].addEventListener('click', function () {
 //         popupImage.src = elementsPhoto[i].src;
@@ -71,23 +61,7 @@ const initialCards = [
 // }
 
 for (let i = 0; i < initialCards.length; i++) {
-    const elementsElement = document.createElement('li');
-    elementsElement.className = ('elements__element');
-    const elementsPhoto = document.createElement('img');
-    elementsPhoto.className = ('elements__photo');
-    const elementsInfo = document.createElement('div');
-    elementsInfo.className = ('elements__info');
-    const elementsSubtitle = document.createElement('p');
-    elementsSubtitle.className = ('elements__subtitle');
-    const elementsButton = document.createElement('button');
-    elementsButton.className = ('elements__button');
-    const elementsDelete = document.createElement('button');
-    elementsDelete.className = ('elements__delete');
-    elementsElement.append(elementsPhoto, elementsInfo, elementsDelete)
-    elementsInfo.append(elementsSubtitle, elementsButton)
-    elementsList.append(elementsElement)
-    elementsList.children[i].querySelector('p').textContent = initialCards[i].name;
-    elementsList.children[i].querySelector('img').src = initialCards[i].link;
+    appendCard(createCard(initialCards[i].name, initialCards[i].link), elementsList)
 }
 
 function EditProfile() {
@@ -103,40 +77,50 @@ function handleFormSubmit(evt) {
     popupSubmitEdit.addEventListener('click', closeForm(popupEditProfile, 'popup__edit-profile-opened'));
 }
 
+
+addForm.addEventListener('submit', e => {
+    e.preventDefault();
+    appendCard(createCard(popupInputPlace.value, popupInputLink.value), elementsList);
+    popupInputPlace.value = '', popupInputLink.value = ''; closeForm(popupAddCard, 'popup__add-card-opened')
+});
+
 function addCard() {
     openForm(popupAddCard, 'popup__add-card-opened');
-    addForm.addEventListener('submit', e => {e.preventDefault(); addNewCard(popupInputPlace.value, popupInputLink.value)});
-    popupCloseAdd.addEventListener('click', () => closeForm(popupAddCard, 'popup__add-card-opened'));
 }
 
-function addNewCard( place, link) {
-    const elementsElement = document.createElement('li').className = ('elements__element');
-    const elementsPhoto = document.createElement('img').className = ('elements__photo');
+function createCard(place, link) {
+    const elementsElement = document.createElement('li');
+    elementsElement.className = ('elements__element');
+    const elementsPhoto = document.createElement('img');
+    elementsPhoto.className = ('elements__photo');
     elementsPhoto.src = link;
-    const elementsInfo = document.createElement('div').className = ('elements__info');
-    const elementsSubtitle = document.createElement('p').className = ('elements__subtitle');
+    elementsPhoto.addEventListener('click', function () {
+        popupImage.src = elementsPhoto.src;
+        popupSubtitle.textContent = elementsPhoto.nextElementSibling.textContent;
+        openForm(popupFullscreen, 'popup__fullscreen_opened');
+        popupCloseImage.addEventListener('click', () => { closeForm(popupFullscreen, 'popup__fullscreen_opened') })
+    })
+
+
+    const elementsInfo = document.createElement('div');
+    elementsInfo.className = ('elements__info');
+    const elementsSubtitle = document.createElement('p');
+    elementsSubtitle.className = ('elements__subtitle');
     elementsSubtitle.textContent = place;
-    const elementsButton = document.createElement('button').className = ('elements__button');
-    const elementsDelete = document.createElement('button').className = ('elements__delete');
-    elementsList.append(elementsElement);
+    const elementsButton = document.createElement('button');
+    elementsButton.className = ('elements__button');
+    elementsButton.addEventListener('click', (e) => e.target.classList.toggle('elements__button-active'))
+    const elementsDelete = document.createElement('button');
+    elementsDelete.className = ('elements__delete');
+    elementsDelete.addEventListener('click', () => elementsDelete.parentElement.remove())
     elementsInfo.append(elementsSubtitle, elementsButton);
     elementsElement.append(elementsPhoto, elementsInfo, elementsDelete);
-    
-    
+    return elementsElement;
 }
 
-
-{/* function addNewCard(evt) {
-    evt.preventDefault();
-    const elementCopy = elementsElement.cloneNode(true);
-    elementCopy.querySelector('.elements__subtitle').textContent = popupInputPlace.value;
-    elementCopy.querySelector('.elements__photo').src = popupInputLink.value;
-    elementCopy.querySelector('.elements__button').classList.remove('elements__button-active');
-    elementCopy.querySelector('.elements__delete').addEventListener('click', (item) => { item.target.parentElement.remove() });
-    elementCopy.querySelector('.elements__button').addEventListener('click', (item) => { item.target.classList.toggle('elements__button-active') });
-    elementsList.insertBefore(elementCopy, elementsList.children[0]);
-    popupSubmitAdd.addEventListener('click', closeForm(popupAddCard, 'popup__add-card-opened'));
-} */}
+function appendCard(card, list) {
+    list.insertBefore(card, list.children[0]);
+}
 
 function closeForm(block, active) {
     block.classList.remove(active);
@@ -148,5 +132,7 @@ function openForm(module, modified) {
     module.classList.add(modified);
 }
 
+
+popupCloseAdd.addEventListener('click', () => closeForm(popupAddCard, 'popup__add-card-opened'));
 profileButtonEdit.addEventListener('click', EditProfile);
 profileButtonAdd.addEventListener('click', addCard)
