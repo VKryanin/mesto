@@ -14,10 +14,10 @@
     transition: visibility .7s ease-in-out;
 }
 
-.popup__edit-profile-opened {
+/* .popup__edit-profile-opened {
     visibility: visible;
     z-index: 2;
-}
+} */
 
 @media screen and (max-width:880px) {
     .popup__edit-profile {

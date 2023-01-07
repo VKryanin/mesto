@@ -17,3 +17,8 @@
     visibility: visible;
     opacity: 1;
 }
+
+.popup_opened .popup__container  {
+    visibility: visible;
+    z-index: 2;
+}
