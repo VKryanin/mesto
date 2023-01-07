@@ -63,11 +63,10 @@ function openEditProfilePopup() {
     openPopup(popupEditProfile);
     popupInputName.value = profileTitle.textContent;
     popupInputInfo.value = profileSubtitle.textContent;
-    formEdit.addEventListener('submit', profileEdit);
-    popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
+
 }
 
-function profileEdit(evt) {
+function editProfile(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupInputName.value;
     profileSubtitle.textContent = popupInputInfo.value;
@@ -101,7 +100,10 @@ function addNewCard() {
     popupCloseAdd.addEventListener('click', () => closePopup(popupAddCard));
 }
 
+formEdit.addEventListener('submit', editProfile);
+popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
 ButtonEditProfile.addEventListener('click', openEditProfilePopup);
+
 buttonAddCard.addEventListener('click', addNewCard)
 formAdd.addEventListener('submit', e => {
     e.preventDefault(); appendCard(createCard(popupInputLink.value, popupInputPlace.value), cardsContainer); closePopup(popupAddCard)
