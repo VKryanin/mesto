@@ -49,9 +49,7 @@ const initialCards = [
     }
 ];
 
-for (let i = 0; i < initialCards.length; i++) {
-    appendCard(createCard(initialCards[i].link, initialCards[i].name), cardsContainer)
-}
+initialCards.forEach(item => appendCard(createCard(item.link, item.name), cardsContainer))
 
 function openPopup(popup) {
     popup.classList.add('popup_opened')
