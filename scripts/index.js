@@ -49,7 +49,7 @@ const initialCards = [
     }
 ];
 
-initialCards.forEach(item => appendCard(createCard(item.link, item.name), cardsContainer))
+initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.name), cardsContainer))
 
 function openPopup(popup) {
     popup.classList.add('popup_opened')
@@ -82,7 +82,6 @@ function createCard(link, text) {
         popupImage.src = cardElement.querySelector('.elements__photo').src;
         popupSubtitle.textContent = cardElement.querySelector('.elements__subtitle').textContent;
         openPopup(popupFullscreen);
-        popupCloseImage.addEventListener('click', () => { closePopup(popupFullscreen) })
     });
     cardElement.querySelector('.elements__delete').addEventListener('click', () => cardElement.querySelector('.elements__delete').parentElement.remove());
     cardElement.querySelector('.elements__button').addEventListener('click', (e) => e.target.classList.toggle('elements__button-active'));
@@ -90,8 +89,9 @@ function createCard(link, text) {
 }
 
 function appendCard(card, place) {
-    place.insertBefore(card, place.children[0])
+    place.prepend(card)
 }
+
 
 function addNewCard() {
     openPopup(popupAddCard)
@@ -103,9 +103,9 @@ function addNewCard() {
 formEdit.addEventListener('submit', editProfile);
 popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
 ButtonEditProfile.addEventListener('click', openEditProfilePopup);
-
 buttonAddCard.addEventListener('click', addNewCard)
 formAdd.addEventListener('submit', e => {
     e.preventDefault(); appendCard(createCard(popupInputLink.value, popupInputPlace.value), cardsContainer); closePopup(popupAddCard)
 })
+popupCloseImage.addEventListener('click', () => { closePopup(popupFullscreen) })
 
