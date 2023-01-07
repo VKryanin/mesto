@@ -64,8 +64,6 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened')
 }
 
-ButtonEditProfile.addEventListener('click', openEditProfilePopup);
-
 function openEditProfilePopup() {
     const popup = document.querySelector('#edit-profile')
     openPopup(popup);
@@ -80,8 +78,6 @@ function profileEdit(evt) {
     profileSubtitle.textContent = popupInputInfo.value;
     popupSubmitEdit.addEventListener('click', closePopup(popup));
 }
-
-buttonAddCard.addEventListener('click', addNewCard)
 
 function createCard(link, text) {
     const popup = document.querySelector('#fullscreen')
@@ -113,7 +109,7 @@ function addNewCard() {
     popupCloseAdd.addEventListener('click', () => closePopup(popup));
 }
 
-
-
+ButtonEditProfile.addEventListener('click', openEditProfilePopup);
+buttonAddCard.addEventListener('click', addNewCard)
 
 
