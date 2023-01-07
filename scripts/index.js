@@ -63,18 +63,17 @@ function closePopup(popup) {
 
 function openEditProfilePopup() {
     openPopup(popupEditProfile);
+    popupInputName.value = profileTitle.textContent;
+    popupInputInfo.value = profileSubtitle.textContent;
     formEdit.addEventListener('submit', profileEdit);
     popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
 }
 
 function profileEdit(evt) {
     evt.preventDefault();
-    const popup = document.querySelector('#edit-profile')
     profileTitle.textContent = popupInputName.value;
     profileSubtitle.textContent = popupInputInfo.value;
     popupSubmitEdit.addEventListener('click', closePopup(popupEditProfile));
-    popupInputName.value = profileTitle.textContent;
-    popupInputInfo.value = profileSubtitle.textContent;
 }
 
 function createCard(link, text) {
@@ -99,6 +98,8 @@ function appendCard(card, place) {
 
 function addNewCard() {
     openPopup(popupAddCard)
+    popupInputLink.value = ''
+    popupInputPlace.value = ''
     popupCloseAdd.addEventListener('click', () => closePopup(popupAddCard));
 }
 
