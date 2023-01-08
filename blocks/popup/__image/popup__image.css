@@ -4,4 +4,5 @@
     width: 816px;
     max-width: 75vw;
     margin: 0 auto;
+    object-fit: contain;
 }
