@@ -50,7 +50,6 @@ function editProfile(evt) {
 function createCard(link, text) {
     let newCard = cardElement.cloneNode(true);
     const buttonLike = cardElement.querySelector('.elements__button')
-    const image = newCard.querySelector('.elements__photo');
     newCard.querySelector('.elements__photo').src = link;
     newCard.querySelector('.elements__photo').alt = `Фотография: ${text}`;
     newCard.querySelector('.elements__subtitle').textContent = text;
@@ -71,8 +70,7 @@ function appendCard(card, place) {
 
 function openAddCardPopup() {
     openPopup(popupAddCard);
-    popupInputLink.value = '';
-    popupInputPlace.value = '';
+    formAdd.reset()
 }
 
 formEdit.addEventListener('submit', editProfile);
