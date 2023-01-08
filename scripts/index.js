@@ -48,7 +48,6 @@ function editProfile(evt) {
 
 function createCard(link, text) {
     let newCard = cardElement.cloneNode(true);
-    const buttonLike = cardElement.querySelector('.elements__button')
     newCard.querySelector('.elements__photo').src = link;
     newCard.querySelector('.elements__photo').alt = `Фотография: ${text}`;
     newCard.querySelector('.elements__subtitle').textContent = text;
@@ -59,7 +58,7 @@ function createCard(link, text) {
         openPopup(popupFullscreen);
     });
     newCard.querySelector('.elements__delete').addEventListener('click', () => newCard.remove());
-    buttonLike.addEventListener('click', (e) => e.target.classList.toggle('elements__button-active'));
+    newCard.querySelector('.elements__button').addEventListener('click', (e) => e.target.classList.toggle('elements__button-active'));
     return newCard;
 }
 
