@@ -15,12 +15,12 @@ const popupInputInfo = document.querySelector('.popup__input-info');
 const popupInputPlace = document.querySelector('.popup__input-place');
 const popupInputLink = document.querySelector('.popup__input-link');
 const cardsContainer = document.querySelector('.elements__list');
-const templateCard = document.querySelector('#template__card').content;
 const popupImage = document.querySelector('.popup__image');
 const popupSubtitle = document.querySelector('.popup__subtitle');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const ButtonEditProfile = document.querySelector('.profile__button-edit');
-
+const templateCard = document.querySelector('#template__card').content;
+const cardElement = templateCard.querySelector('.elements__element')
 
 
 initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.name), cardsContainer));
@@ -48,20 +48,21 @@ function editProfile(evt) {
 }
 
 function createCard(link, text) {
-    const cardElement = templateCard.querySelector('.elements__element').cloneNode(true);
+    let newCard = cardElement.cloneNode(true);
     const buttonLike = cardElement.querySelector('.elements__button')
-    cardElement.querySelector('.elements__photo').src = link;
-    cardElement.querySelector('.elements__photo').alt = `Фотография: ${text}`;
-    cardElement.querySelector('.elements__subtitle').textContent = text;
-    cardElement.querySelector('.elements__photo').addEventListener('click', function () {
-        popupImage.src = cardElement.querySelector('.elements__photo').src;
-        popupSubtitle.textContent = cardElement.querySelector('.elements__subtitle').textContent;
+    const image = newCard.querySelector('.elements__photo');
+    newCard.querySelector('.elements__photo').src = link;
+    newCard.querySelector('.elements__photo').alt = `Фотография: ${text}`;
+    newCard.querySelector('.elements__subtitle').textContent = text;
+    newCard.querySelector('.elements__photo').addEventListener('click', function () {
+        popupImage.src = newCard.querySelector('.elements__photo').src;
+        popupSubtitle.textContent = newCard.querySelector('.elements__subtitle').textContent;
         popupImage.alt = popupSubtitle.textContent;
         openPopup(popupFullscreen);
     });
-    cardElement.querySelector('.elements__delete').addEventListener('click', () => cardElement.remove());
+    newCard.querySelector('.elements__delete').addEventListener('click', () => newCard.remove());
     buttonLike.addEventListener('click', (e) => e.target.classList.toggle('elements__button-active'));
-    return cardElement;
+    return newCard;
 }
 
 function appendCard(card, place) {
