@@ -22,7 +22,6 @@ const ButtonEditProfile = document.querySelector('.profile__button-edit');
 const templateCard = document.querySelector('#template__card').content;
 const cardElement = templateCard.querySelector('.elements__element')
 
-
 initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.name), cardsContainer));
 
 function openPopup(popup) {
