@@ -47,7 +47,7 @@ function editProfile(evt) {
 }
 
 function createCard(link, text) {
-    let newCard = cardElement.cloneNode(true);
+    const newCard = cardElement.cloneNode(true);
     newCard.querySelector('.elements__photo').src = link;
     newCard.querySelector('.elements__photo').alt = `Фотография: ${text}`;
     newCard.querySelector('.elements__subtitle').textContent = text;
