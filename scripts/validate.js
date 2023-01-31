@@ -1,4 +1,18 @@
-export function isValid(popupForm) {
+export function enableValidator (settings) {
+    // console.log(settings);
+    document.querySelectorAll(settings.form).forEach(el => {
+        setListener(el, settings)
+    })
+}
+
+function setListener (form, settings) {
+    document.querySelectorAll(settings.input).forEach((el) => el.addEventListener('input', () => {
+        console.log('123');
+        isValid(form)
+    }))
+}
+
+function isValid(popupForm) {
     const inputList = Array.from(popupForm.querySelectorAll('.popup__input'))
     const buttonElement = popupForm.querySelector('.popup__submit-button')
     inputList.forEach((inputElement) => {

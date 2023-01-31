@@ -1,5 +1,5 @@
 import { initialCards } from "./cards.js";
-import { isValid } from './validate.js'
+import { enableValidator } from './validate.js'
 
 const root = document.querySelector('.root')
 const popupAddCard = document.querySelector('#add-card');
@@ -32,21 +32,30 @@ function openPopup(popup) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape);
+}
+
+function closeToClick(event, popup) {
+    if (Array.from(event.target.classList).includes('popup_opened')) {
+        closePopup(popup)
+    }
+}
+
+function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened')
+        closePopup(openedPopup)
+    }
 }
 
 function openEditProfilePopup() {
-    const popupForm = Array.from(document.querySelectorAll('.popup__form'));
-    popupForm.forEach((currentForm) => {
-        isValid(currentForm)
-    })
+    // const popupForm = Array.from(document.querySelectorAll('.popup__form'));
+    // popupForm.forEach((currentForm) => {
+    //     isValid(currentForm)
+    // })
     openPopup(popupEditProfile);
     popupInputName.value = profileTitle.textContent;
     popupInputInfo.value = profileSubtitle.textContent;
-    document.addEventListener('keydown', function (button) {
-        if (button.keyCode === 27) {
-            closePopup(popupEditProfile)
-        }
-    })
 }
 
 function editProfile(evt) {
@@ -66,11 +75,6 @@ function createCard(link, text) {
         popupSubtitle.textContent = newCard.querySelector('.elements__subtitle').textContent;
         popupImage.alt = popupSubtitle.textContent;
         openPopup(popupFullscreen);
-        document.addEventListener('keydown', function (button) {
-            if (button.keyCode === 27) {
-                closePopup(popupFullscreen)
-            }
-        })
     });
     newCard.querySelector('.elements__delete').addEventListener('click', () => newCard.remove());
     newCard.querySelector('.elements__button').addEventListener('click', (e) => e.target.classList.toggle('elements__button-active'));
@@ -79,28 +83,25 @@ function createCard(link, text) {
 
 function appendCard(card, place) {
     place.prepend(card)
-
 }
 
 function openAddCardPopup() {
-    const popupForm = Array.from(document.querySelectorAll('.popup__form'));
-    popupForm.forEach((currentForm) => {
-        isValid(currentForm)
-    })
+    // const popupForm = Array.from(document.querySelectorAll('.popup__form'));
+    // popupForm.forEach((currentForm) => {
+    //     isValid(currentForm)
+    // })
     openPopup(popupAddCard);
     formAdd.reset()
-    document.addEventListener('keydown', function (button) {
-        if (button.keyCode === 27) {
-            closePopup(popupAddCard)
-        }
-    })
+}
+const settings = {
+    form: '.popup__form',
+    input: 'popup__input',
+    textError: '.popup__text-error',
+    inputInfo: '.popup__input-info',
+    submit: '.popup__submit-button'
 }
 
-function CloseToClick(event, popup) {
-    if (Array.from(event.target.classList).includes('popup_opened')) {
-        closePopup(popup)
-    }
-}
+enableValidator(settings)
 
 formEdit.addEventListener('submit', editProfile);
 popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
@@ -113,8 +114,10 @@ formAdd.addEventListener('submit', e => {
     closePopup(popupAddCard)
 })
 popupCloseImage.addEventListener('click', () => { closePopup(popupFullscreen) });
-popupEditProfile.addEventListener('click', ()=> CloseToClick(event, popupEditProfile))
-popupAddCard.addEventListener('click', ()=> CloseToClick(event, popupAddCard))
-popupFullscreen.addEventListener('click', ()=> CloseToClick(event, popupFullscreen))
+popupEditProfile.addEventListener('click', ()=> closeToClick(event, popupEditProfile))
+popupAddCard.addEventListener('click', ()=> closeToClick(event, popupAddCard))
+popupFullscreen.addEventListener('click', ()=> closeToClick(event, popupFullscreen))
+document.addEventListener('keydown', (evt) => closeByEscape(evt))
+
 
 
