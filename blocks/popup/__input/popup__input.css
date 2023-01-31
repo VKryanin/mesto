@@ -6,19 +6,9 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    outline: none
 }
 
-.popup__input:first-of-type {
-    margin-bottom: 30px;
-}
-
-.popup__input:last-of-type {
-    margin-bottom: 48px;
-}
-
-
-@media screen and (max-width:880px) {
-    .popup__input:last-of-type {
-        margin-bottom: 45px;
-    }
+.popup__input-error {
+    border-bottom: 1px solid #FF0000;
 }

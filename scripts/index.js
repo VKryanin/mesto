@@ -1,5 +1,7 @@
 import { initialCards } from "./cards.js";
+import { isValid } from './validate.js'
 
+const root = document.querySelector('.root')
 const popupAddCard = document.querySelector('#add-card');
 const popupFullscreen = document.querySelector('#fullscreen');
 const popupEditProfile = document.querySelector('#edit-profile');
@@ -33,10 +35,18 @@ function closePopup(popup) {
 }
 
 function openEditProfilePopup() {
+    const popupForm = Array.from(document.querySelectorAll('.popup__form'));
+    popupForm.forEach((currentForm) => {
+        isValid(currentForm)
+    })
     openPopup(popupEditProfile);
     popupInputName.value = profileTitle.textContent;
     popupInputInfo.value = profileSubtitle.textContent;
-
+    document.addEventListener('keydown', function (button) {
+        if (button.keyCode === 27) {
+            closePopup(popupEditProfile)
+        }
+    })
 }
 
 function editProfile(evt) {
@@ -56,6 +66,11 @@ function createCard(link, text) {
         popupSubtitle.textContent = newCard.querySelector('.elements__subtitle').textContent;
         popupImage.alt = popupSubtitle.textContent;
         openPopup(popupFullscreen);
+        document.addEventListener('keydown', function (button) {
+            if (button.keyCode === 27) {
+                closePopup(popupFullscreen)
+            }
+        })
     });
     newCard.querySelector('.elements__delete').addEventListener('click', () => newCard.remove());
     newCard.querySelector('.elements__button').addEventListener('click', (e) => e.target.classList.toggle('elements__button-active'));
@@ -64,11 +79,27 @@ function createCard(link, text) {
 
 function appendCard(card, place) {
     place.prepend(card)
+
 }
 
 function openAddCardPopup() {
+    const popupForm = Array.from(document.querySelectorAll('.popup__form'));
+    popupForm.forEach((currentForm) => {
+        isValid(currentForm)
+    })
     openPopup(popupAddCard);
     formAdd.reset()
+    document.addEventListener('keydown', function (button) {
+        if (button.keyCode === 27) {
+            closePopup(popupAddCard)
+        }
+    })
+}
+
+function CloseToClick(event, popup) {
+    if (Array.from(event.target.classList).includes('popup_opened')) {
+        closePopup(popup)
+    }
 }
 
 formEdit.addEventListener('submit', editProfile);
@@ -82,4 +113,8 @@ formAdd.addEventListener('submit', e => {
     closePopup(popupAddCard)
 })
 popupCloseImage.addEventListener('click', () => { closePopup(popupFullscreen) });
+popupEditProfile.addEventListener('click', ()=> CloseToClick(event, popupEditProfile))
+popupAddCard.addEventListener('click', ()=> CloseToClick(event, popupAddCard))
+popupFullscreen.addEventListener('click', ()=> CloseToClick(event, popupFullscreen))
+
 

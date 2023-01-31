@@ -7,10 +7,11 @@
     left: 0;
     background: rgba(0, 0, 0, .5);
     visibility: hidden;
-    justify-content: center;
-    align-items: center;
     opacity: 0;
     transition: visibility .5s, opacity .5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .popup_opened {
