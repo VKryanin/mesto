@@ -1,5 +1,4 @@
 .popup__text-error {
-    /* display: none; */
     color: #fff;
     font-weight: 400;
     font-size: 12px;
@@ -7,16 +6,20 @@
     margin-top: 5px;
 }
 
+.popup__span {
+    margin: 0;
+}
+
 .popup__text-error-active {
     color: red;
 }
 
 .popup__text-error:first-of-type {
-    margin-bottom: 13px;
+    /* margin-bottom: 13px; */
 }
 
 .popup__text-error:last-of-type {
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
 }
 
 
@@ -25,3 +28,4 @@
         margin-bottom: 45px;
     }
 }
+

@@ -31,8 +31,8 @@ function checkInputValidity(popupForm, inputElement, inputList) {
 function showInputError(popupForm, inputElement, message) {
     const textError = popupForm.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add('popup__input-error')
-    textError.textContent = message
     textError.classList.add('popup__text-error-active')
+    textError.textContent = message
 }
 
 function hideInputError(popupForm, inputElement) {

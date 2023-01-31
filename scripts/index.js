@@ -1,6 +1,6 @@
 import { initialCards } from "./cards.js";
 import { enableValidator } from './validate.js'
-
+const popup = document.querySelector('.popup_opened')
 const popupAddCard = document.querySelector('#add-card');
 const popupFullscreen = document.querySelector('#fullscreen');
 const popupEditProfile = document.querySelector('#edit-profile');
@@ -30,17 +30,18 @@ const settings = {
     submit: '.popup__submit-button'
 }
 
+
 initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.name), cardsContainer));
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    enableValidator(settings);
+    resetStyle (popup);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEscape);
-    console.log(popup.querySelector('.popup__form'));
-    popup.querySelector('.popup__form').reset()
 }
 
 function closeToClick(event, popup) {
@@ -94,7 +95,15 @@ function openAddCardPopup() {
     formAdd.reset()
 }
 
-enableValidator(settings)
+function resetStyle (popup) {
+    Array.from(popup.querySelectorAll('.popup__input')).forEach((el) => {
+        el.classList.remove('popup__input-error')
+    })
+    Array.from(popup.querySelectorAll('.popup__span')).forEach((el) => {
+        el.classList.remove('popup__text-error-active')
+    })
+}
+
 formEdit.addEventListener('submit', editProfile);
 popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
 ButtonEditProfile.addEventListener('click', openEditProfilePopup);
