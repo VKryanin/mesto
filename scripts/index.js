@@ -31,7 +31,6 @@ const settings = {
     submit: '.popup__submit-button'
 }
 
-
 initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.name), cardsContainer));
 
 function openPopup(popup) {
@@ -97,15 +96,17 @@ function openAddCardPopup() {
 }
 
 function resetStyle(popup) {
-    const buttonSubmit = popup.querySelector('.popup__submit-button');
-    Array.from(popup.querySelectorAll('.popup__input')).forEach((el) => {
-        el.classList.remove('popup__input-error')
-    })
-    Array.from(popup.querySelectorAll('.popup__span')).forEach((el) => {
-        el.classList.remove('popup__text-error-active')
-    })
-    buttonSubmit.classList.add('dissable')
-    buttonSubmit.disabled = true;
+    if (popupEditProfile.classList.contains('popup_opened') || popupAddCard.classList.contains('popup_opened') ) {
+        const buttonSubmit = popup.querySelector('.popup__submit-button');
+        Array.from(popup.querySelectorAll('.popup__input')).forEach((el) => {
+            el.classList.remove('popup__input-error')
+        })
+        Array.from(popup.querySelectorAll('.popup__span')).forEach((el) => {
+            el.classList.remove('popup__text-error-active')
+        })
+        buttonSubmit.classList.add('dissable')
+        buttonSubmit.disabled = true;
+    }
 }
 
 formEdit.addEventListener('submit', editProfile);

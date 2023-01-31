@@ -1,4 +1,5 @@
 export function enableValidator (settings) {
+    // resetStyle(settings.form);
     document.querySelectorAll(settings.form).forEach(el => {
         setListener(el, settings)
     })
@@ -57,4 +58,19 @@ function toggleButton(buttonElement, inputList) {
         buttonElement.classList.remove('dissable');
         buttonElement.removeAttribute('disabled');
     }
+}
+
+function resetStyle(popup) {
+    console.log(popup.querySelector('.popup__submit-button'));
+    console.log(popup.querySelector('.popup__submit-button'));
+    const buttonSubmit = popup.querySelector('.popup__submit-button');
+    
+    Array.from(popup.querySelectorAll('.popup__input')).forEach((el) => {
+        el.classList.remove('popup__input-error')
+    })
+    Array.from(popup.querySelectorAll('.popup__span')).forEach((el) => {
+        el.classList.remove('popup__text-error-active')
+    })
+    buttonSubmit.classList.add('dissable')
+    buttonSubmit.disabled = true;
 }
