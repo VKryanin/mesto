@@ -1,12 +1,13 @@
 import { initialCards } from "./cards.js";
 import { enableValidator } from './validate.js'
-const popup = document.querySelector('.popup_opened')
+
 const popupAddCard = document.querySelector('#add-card');
 const popupFullscreen = document.querySelector('#fullscreen');
 const popupEditProfile = document.querySelector('#edit-profile');
 const popupCloseForm = document.querySelector('.close-edit');
 const popupCloseAdd = document.querySelector('.close-add');
 const popupCloseImage = document.querySelector('.close-image');
+// const closeButtons = document.querySelectorAll('.popup__close');
 const formEdit = document.querySelector('.edit-form');
 const formAdd = document.querySelector('.add-form');
 const profileTitle = document.querySelector('.profile__title');
@@ -122,6 +123,7 @@ popupEditProfile.addEventListener('click', () => closeToClick(event, popupEditPr
 popupAddCard.addEventListener('click', () => closeToClick(event, popupAddCard))
 popupFullscreen.addEventListener('click', () => closeToClick(event, popupFullscreen))
 document.addEventListener('keydown', (evt) => closeByEscape(evt))
+
 
 
 
