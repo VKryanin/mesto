@@ -1,29 +1,26 @@
 export function enableValidator (settings) {
-    // console.log(settings);
     document.querySelectorAll(settings.form).forEach(el => {
         setListener(el, settings)
     })
 }
 
 function setListener (form, settings) {
-    document.querySelectorAll(settings.input).forEach((el) => el.addEventListener('input', () => {
-        console.log('123');
+    form.querySelectorAll(settings.input).forEach((el) => el.addEventListener('input', () => {
         isValid(form)
     }))
 }
 
 function isValid(popupForm) {
     const inputList = Array.from(popupForm.querySelectorAll('.popup__input'))
-    const buttonElement = popupForm.querySelector('.popup__submit-button')
     inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', () => {
-            checkInputValidity(popupForm, inputElement);
-            toggleButton(buttonElement, inputList);
-        })
+        inputElement.addEventListener('input', checkInputValidity(popupForm, inputElement, inputList)
+        )
     })
 }
 
-function checkInputValidity(popupForm, inputElement) {
+function checkInputValidity(popupForm, inputElement, inputList) {
+    const buttonElement = popupForm.querySelector('.popup__submit-button')
+    toggleButton(buttonElement, inputList)
     if (!inputElement.validity.valid) {
         showInputError(popupForm, inputElement, inputElement.validationMessage);
     } else {

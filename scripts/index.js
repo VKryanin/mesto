@@ -1,7 +1,6 @@
 import { initialCards } from "./cards.js";
 import { enableValidator } from './validate.js'
 
-const root = document.querySelector('.root')
 const popupAddCard = document.querySelector('#add-card');
 const popupFullscreen = document.querySelector('#fullscreen');
 const popupEditProfile = document.querySelector('#edit-profile');
@@ -23,6 +22,13 @@ const buttonAddCard = document.querySelector('.profile__button-add');
 const ButtonEditProfile = document.querySelector('.profile__button-edit');
 const templateCard = document.querySelector('#template__card').content;
 const cardElement = templateCard.querySelector('.elements__element')
+const settings = {
+    form: '.popup__form',
+    input: '.popup__input',
+    textError: '.popup__text-error',
+    inputInfo: '.popup__input-info',
+    submit: '.popup__submit-button'
+}
 
 initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.name), cardsContainer));
 
@@ -33,6 +39,8 @@ function openPopup(popup) {
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEscape);
+    console.log(popup.querySelector('.popup__form'));
+    popup.querySelector('.popup__form').reset()
 }
 
 function closeToClick(event, popup) {
@@ -49,10 +57,6 @@ function closeByEscape(evt) {
 }
 
 function openEditProfilePopup() {
-    // const popupForm = Array.from(document.querySelectorAll('.popup__form'));
-    // popupForm.forEach((currentForm) => {
-    //     isValid(currentForm)
-    // })
     openPopup(popupEditProfile);
     popupInputName.value = profileTitle.textContent;
     popupInputInfo.value = profileSubtitle.textContent;
@@ -86,23 +90,11 @@ function appendCard(card, place) {
 }
 
 function openAddCardPopup() {
-    // const popupForm = Array.from(document.querySelectorAll('.popup__form'));
-    // popupForm.forEach((currentForm) => {
-    //     isValid(currentForm)
-    // })
     openPopup(popupAddCard);
     formAdd.reset()
 }
-const settings = {
-    form: '.popup__form',
-    input: 'popup__input',
-    textError: '.popup__text-error',
-    inputInfo: '.popup__input-info',
-    submit: '.popup__submit-button'
-}
 
 enableValidator(settings)
-
 formEdit.addEventListener('submit', editProfile);
 popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
 ButtonEditProfile.addEventListener('click', openEditProfilePopup);
