@@ -36,7 +36,7 @@ initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.nam
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     enableValidator(settings);
-    resetStyle (popup);
+    resetStyle(popup);
 }
 
 function closePopup(popup) {
@@ -95,13 +95,16 @@ function openAddCardPopup() {
     formAdd.reset()
 }
 
-function resetStyle (popup) {
+function resetStyle(popup) {
+    const buttonSubmit = popup.querySelector('.popup__submit-button');
     Array.from(popup.querySelectorAll('.popup__input')).forEach((el) => {
         el.classList.remove('popup__input-error')
     })
     Array.from(popup.querySelectorAll('.popup__span')).forEach((el) => {
         el.classList.remove('popup__text-error-active')
     })
+    buttonSubmit.classList.add('dissable')
+    buttonSubmit.disabled = true;
 }
 
 formEdit.addEventListener('submit', editProfile);
@@ -115,9 +118,9 @@ formAdd.addEventListener('submit', e => {
     closePopup(popupAddCard)
 })
 popupCloseImage.addEventListener('click', () => { closePopup(popupFullscreen) });
-popupEditProfile.addEventListener('click', ()=> closeToClick(event, popupEditProfile))
-popupAddCard.addEventListener('click', ()=> closeToClick(event, popupAddCard))
-popupFullscreen.addEventListener('click', ()=> closeToClick(event, popupFullscreen))
+popupEditProfile.addEventListener('click', () => closeToClick(event, popupEditProfile))
+popupAddCard.addEventListener('click', () => closeToClick(event, popupAddCard))
+popupFullscreen.addEventListener('click', () => closeToClick(event, popupFullscreen))
 document.addEventListener('keydown', (evt) => closeByEscape(evt))
 
 
