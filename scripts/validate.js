@@ -15,20 +15,29 @@ export function enableValidator(settings) {
 
 function setListenerForm(settings, formElement) {
     const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector))
-    inputList.forEach(inputActive => inputActive.addEventListener('input', isValidInput(inputActive, settings))
-    )
+    inputList.forEach(inputActive => inputActive.addEventListener('input', isValidInput(inputActive, settings, formElement)))
 }
-
-function isValidInput(inputActive, settings) {
-    console.log(inputActive);
-    
+function isValidInput(inputActive, settings, formElement) {
     if (!inputActive.validity.valid) {
         showError(inputActive, settings)
-        toggleButton(!inputActive.validity.valid, settings)
+        toggleButton(inputActive ,formElement, settings)
     }
     else {
         hideError(inputActive, settings)
-        toggleButton(!inputActive.validity.valid, settings)
+        toggleButton(inputActive ,formElement, settings)
+    }
+}
+
+function toggleButton(inputActive ,formElement, settings) {
+    const button = formElement.querySelector(settings.submitButtonSelector);
+    if (!inputActive.validity.valid) {
+        button.classList.add(settings.inactiveButtonClass)
+        showError(inputActive, settings)
+    }
+    else {
+        button.classList.remove(settings.inactiveButtonClass)
+        button.removeAttribute("disabled")
+        hideError(inputActive, settings)
     }
 }
 
@@ -44,18 +53,6 @@ function hideError(inputActive, settings) {
     const spanError = inputActive.nextElementSibling
     spanError.classList.remove(settings.errorClass)
     spanError.textContent = ''
-}
-
-function toggleButton(status, settings) {
-    console.log(status);
-    const button = document.querySelector(settings.submitButtonSelector);
-    console.log(button);
-    if (status) {
-        button.classList.add(settings.inactiveButtonClass)
-    }
-    else {
-        button.classList.remove(settings.inactiveButtonClass)
-    }
 }
 
 // function showInputError(popupForm, inputElement, message) {
