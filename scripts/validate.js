@@ -9,28 +9,32 @@
 
 export function enableValidator(settings) {
     document.querySelectorAll(settings.formSelector).forEach(formSelector =>
-        formSelector.addEventListener('input', () => setListenerForm(settings, formSelector))
+        formSelector.addEventListener('click', () => setListenerForm(settings, formSelector))
     )
 }
 
+
 function setListenerForm(settings, formElement) {
-    const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector))
-    inputList.forEach(inputActive => inputActive.addEventListener('input', isValidInput(inputActive, settings, formElement)))
-}
-function isValidInput(inputActive, settings, formElement) {
-    if (!inputActive.validity.valid) {
-        showError(inputActive, settings)
-        toggleButton(inputActive ,formElement, settings)
-    }
-    else {
-        hideError(inputActive, settings)
-        toggleButton(inputActive ,formElement, settings)
-    }
+    const inputList = formElement.querySelectorAll(settings.inputSelector);
+    isValidInput(inputList, settings, formElement)
 }
 
-function toggleButton(inputActive ,formElement, settings) {
-    const button = formElement.querySelector(settings.submitButtonSelector);
+function isValidInput(inputList, settings, formElement) {
+    inputList.forEach(inputActive => inputActive.addEventListener('input', () => {
     if (!inputActive.validity.valid) {
+        toggleButton(inputActive, formElement, settings)
+    }
+    else {
+        toggleButton(inputActive, formElement, settings)
+    }}
+    ))
+
+}
+
+function toggleButton(inputActive, formElement, settings) {
+    const button = formElement.querySelector(settings.submitButtonSelector);
+    const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+    if (inputList.some(el => !el.validity.valid)) {
         button.classList.add(settings.inactiveButtonClass)
         showError(inputActive, settings)
     }
@@ -55,33 +59,3 @@ function hideError(inputActive, settings) {
     spanError.textContent = ''
 }
 
-// function showInputError(popupForm, inputElement, message) {
-//     const textError = popupForm.querySelector(`.${inputElement.id}-error`);
-//     inputElement.classList.add('popup__input-error')
-//     textError.classList.add('popup__text-error-active')
-//     textError.textContent = message
-// }
-
-// function hideInputError(popupForm, inputElement) {
-//     const textError = popupForm.querySelector(`.${inputElement.id}-error`);
-//     inputElement.classList.remove('popup__input-error')
-//     textError.classList.remove('popup__text-error-active')
-//     textError.textContent = ''
-// }
-
-// function hasInvalidInput(inputList) {
-//     return inputList.some((inputElement) => {
-//         return !inputElement.validity.valid;
-//     });
-// }
-
-// function toggleButton(buttonElement, inputList) {
-//     if (hasInvalidInput(inputList)) {
-//         buttonElement.classList.add('dissable');
-//         buttonElement.setAttribute('disabled', true);
-//     }
-//     else {
-//         buttonElement.classList.remove('dissable');
-//         buttonElement.removeAttribute('disabled');
-//     }
-// }
