@@ -46,21 +46,21 @@ function toggleButton(inputActive, formElement, settings) {
 }
 
 function showError(inputActive, settings) {
-    inputActive.classList.add(settings.inputErrorClass);
     const spanError = inputActive.nextElementSibling
     spanError.classList.add(settings.errorClass)
-    spanError.textContent = inputActive.validationMessage
+    spanError.textContent = inputActive.validationMessage;
+    console.log(spanError.textContent.lenght);
+    if (spanError.textContent.length > 2) {
+        inputActive.classList.add(settings.inputErrorClass);
+    }
 }
 
 function hideError(inputActive, settings) {
-    console.log(1);
-    inputActive.classList.remove(settings.inputErrorClass);
-    console.log(2);
     const spanError = inputActive.nextElementSibling;
-    console.log(3);
     spanError.classList.remove(settings.errorClass);
-    console.log(4);
     spanError.textContent = '';
-    console.log(5);
+    if (!spanError.textContent.length < 2) {
+        inputActive.classList.remove(settings.inputErrorClass);
+    }
 }
 

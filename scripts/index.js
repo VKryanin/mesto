@@ -7,7 +7,6 @@ const popupEditProfile = document.querySelector('#edit-profile');
 const popupCloseForm = document.querySelector('.close-edit');
 const popupCloseAdd = document.querySelector('.close-add');
 const popupCloseImage = document.querySelector('.close-image');
-// const closeButtons = document.querySelectorAll('.popup__close');
 const formEdit = document.querySelector('.edit-form');
 const formAdd = document.querySelector('.add-form');
 const profileTitle = document.querySelector('.profile__title');
@@ -37,7 +36,7 @@ initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.nam
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape)
-    // resetStyle(popup);
+    resetStyle(settings);
 }
 
 function closePopup(popup) {
@@ -98,19 +97,14 @@ function openAddCardPopup() {
     formAdd.reset()
 }
 
-// function resetStyle(popup) {
-//     if (popupEditProfile.classList.contains('popup_opened') || popupAddCard.classList.contains('popup_opened')) {
-//         const buttonSubmit = popup.querySelector('.popup__submit-button');
-//         Array.from(popup.querySelectorAll('.popup__input')).forEach((el) => {
-//             el.classList.remove('popup__input-error')
-//         })
-//         Array.from(popup.querySelectorAll('.popup__span')).forEach((el) => {
-//             el.classList.remove('popup__text-error-active')
-//         })
-//         buttonSubmit.classList.add('dissable')
-//         buttonSubmit.disabled = true;
-//     }
-// }
+function resetStyle(settings) {
+    const inputList = document.querySelectorAll(settings.inputSelector)
+    inputList.forEach(item => {
+        item.nextElementSibling.classList.remove(settings.errorClass);
+        item.nextElementSibling.textContent = '';
+        item.classList.remove(settings.inputErrorClass)
+    })
+}
 
 formEdit.addEventListener('submit', editProfile);
 popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
