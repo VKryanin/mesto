@@ -53,9 +53,14 @@ function showError(inputActive, settings) {
 }
 
 function hideError(inputActive, settings) {
+    console.log(1);
     inputActive.classList.remove(settings.inputErrorClass);
-    const spanError = inputActive.nextElementSibling
-    spanError.classList.remove(settings.errorClass)
-    spanError.textContent = ''
+    console.log(2);
+    const spanError = inputActive.nextElementSibling;
+    console.log(3);
+    spanError.classList.remove(settings.errorClass);
+    console.log(4);
+    spanError.textContent = '';
+    console.log(5);
 }
 
