@@ -12,6 +12,6 @@ input:nth-child(2n) {
     margin-top: 13px;
 }
 
-.popup__input-error {
+.popup__input_type_error {
     border-bottom: 1px solid #FF0000;
 }
