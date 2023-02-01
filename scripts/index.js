@@ -99,11 +99,16 @@ function openAddCardPopup() {
 
 function resetStyle(settings) {
     const inputList = document.querySelectorAll(settings.inputSelector)
+    const buttonForm = document.querySelectorAll(settings.submitButtonSelector)
     inputList.forEach(item => {
         item.nextElementSibling.classList.remove(settings.errorClass);
         item.nextElementSibling.textContent = '';
-        item.classList.remove(settings.inputErrorClass)
+        item.classList.remove(settings.inputErrorClass)   
     })
+    buttonForm.forEach(button => {
+        button.setAttribute('disabled', '');
+        button.classList.add(settings.inactiveButtonClass)
+    });
 }
 
 formEdit.addEventListener('submit', editProfile);
