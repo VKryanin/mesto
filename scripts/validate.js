@@ -9,10 +9,8 @@
 
 export function enableValidator(settings) {
     document.querySelectorAll(settings.formSelector).forEach(formSelector =>
-        formSelector.addEventListener('click', () => setListenerForm(settings, formSelector))
-    )
+        setListenerForm(settings, formSelector))
 }
-
 
 function setListenerForm(settings, formElement) {
     const inputList = formElement.querySelectorAll(settings.inputSelector);
@@ -28,7 +26,6 @@ function isValidInput(inputList, settings, formElement) {
         toggleButton(inputActive, formElement, settings)
     }}
     ))
-
 }
 
 function toggleButton(inputActive, formElement, settings) {
@@ -63,4 +60,5 @@ function hideError(inputActive, settings) {
         inputActive.classList.remove(settings.inputErrorClass);
     }
 }
+
 

@@ -36,15 +36,12 @@ initialCards.reverse().forEach(item => appendCard(createCard(item.link, item.nam
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape)
-    resetStyle(settings);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEscape);
 }
-
-
 
 function closeToClick(event, popup) {
     if (Array.from(event.target.classList).includes('popup_opened')) {
@@ -63,6 +60,7 @@ function openEditProfilePopup() {
     openPopup(popupEditProfile);
     popupInputName.value = profileTitle.textContent;
     popupInputInfo.value = profileSubtitle.textContent;
+    resetStyle(settings);
 }
 
 function editProfile(evt) {
@@ -94,7 +92,8 @@ function appendCard(card, place) {
 
 function openAddCardPopup() {
     openPopup(popupAddCard);
-    formAdd.reset()
+    formAdd.reset();
+    resetStyle(settings);
 }
 
 function resetStyle(settings) {
