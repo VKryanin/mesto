@@ -5,7 +5,6 @@ import { FormValidator } from './FormValidator.js'
 const popupAddCard = document.querySelector('#add-card');
 const popupFullscreen = document.querySelector('#fullscreen');
 const popupEditProfile = document.querySelector('#edit-profile');
-const popupImage = document.querySelector('.popup__image')
 const popupCloseForm = document.querySelector('.close-edit');
 const popupCloseAdd = document.querySelector('.close-add');
 const popupCloseImage = document.querySelector('.close-image');
@@ -28,13 +27,6 @@ const settings = {
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
-}
-
-function addNewCards(initialCards, container) {
-    initialCards.forEach(element => {
-        const card = new Card(element, container)
-        return cardsContainer.append(card.generate())
-    });
 }
 
 export function openPopup(popup) {
@@ -77,7 +69,11 @@ function editProfile(evt) {
     closePopup(popupEditProfile)
 }
 
-addNewCards(initialCards, '#template__card')
+const createCard = (data) => {
+    const card = new Card(data)
+    return card.createCard()
+}
+
 formEdit.addEventListener('submit', editProfile);
 popupCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
 buttonEditProfile.addEventListener('click', () => {
@@ -91,15 +87,21 @@ buttonAddCard.addEventListener('click', () => {
 popupCloseAdd.addEventListener('click', () => closePopup(popupAddCard));
 formAdd.addEventListener('submit', e => {
     e.preventDefault();
-    const data = { name: popupInputPlace.value, link: popupInputLink.value };
-    const card = new Card(data, '#template__card', popupImage)
-    cardsContainer.prepend(card.generate());
+    const data = { name: popupInputPlace.value, link: popupInputLink.value,  template: '#template__card', like: '.elements__button', delete: '.elements__delete', photo: '.elements__photo', subtitle: '.elements__subtitle'};
+    cardsContainer.prepend(createCard(data))
     closePopup(popupAddCard)
 })
+
+//Если работа принята, подскажите пожалуйста как правильно указывать объект на 90 и 97 строчках. а то как то сложно читать код в таком виде =)
+initialCards.reverse().forEach(element => {
+    const data = { name: element.name, link: element.link,  template: '#template__card', like: '.elements__button', delete: '.elements__delete', photo: '.elements__photo', subtitle: '.elements__subtitle'};
+    cardsContainer.append(createCard(data))
+});
 popupCloseImage.addEventListener('click', () => { closePopup(popupFullscreen) });
 popupEditProfile.addEventListener('click', () => closeToClick(event, popupEditProfile))
 popupAddCard.addEventListener('click', () => closeToClick(event, popupAddCard))
-popupFullscreen.addEventListener('click', () => closeToClick(event, popupFullscreen))
+popupFullscreen.addEventListener('click', () => closeToClick(event, popupFullscreen)
+)
 const profileForm = new FormValidator(settings, formEdit)
 profileForm.enableValidation();
 const addCardForm = new FormValidator(settings, formAdd);

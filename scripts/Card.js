@@ -1,53 +1,61 @@
-import {openPopup} from './index.js'
+import { openPopup } from './index.js'
 
 class Card {
-    constructor(data, element, popupImage) {
-        this._text = data.name;
+    // constructor(data, cardTemplate, likeCard, deleteCard, imageCard, subCard) {
+    //     this._name = data.name;
+    //     this._link = data.link;
+    //     this._cardTemplate = cardTemplate;
+    //     this._imageCard = imageCard;
+    //     this._deleteCard = deleteCard;
+    //     this._likeCard = likeCard;
+    //     this._subCard = subCard;
+    //     console.log(this._imageCard);
+    //     console.log(this._deleteCard);
+    // }
+    constructor(data) {
+        this._name = data.name;
         this._link = data.link;
-        this._cardTemplate = element
-        this._popupImage = popupImage
-    }
-    
-    _getElement() {
-        const cardElement = document
-            .querySelector(this._cardTemplate)
-            .content.querySelector('.elements__element')
-            .cloneNode(true)
-        return cardElement
+        this._cardTemplate = data.template;
+        this._imageCard = data.photo;
+        this._deleteCard = data.delete;
+        this._likeCard = data.like;
+        this._subCard = data.subtitle;
     }
 
-    generate() {
-        this._element = this._getElement();
-        this._photoElement = this._element.querySelector('.elements__photo')
-        this._photoElement.src = this._link;
-        this._photoElement.alt = this._text;
-        this._element.querySelector('.elements__subtitle').textContent = this._text;
-        this._handlerLike();
-        this._deleteCard();
-        this._openImage();
+    _getTemplate() {
+        const newCard = document
+            .querySelector(this._cardTemplate)
+            .content.querySelector('.elements__element')
+            .cloneNode(true);
+        return newCard
+    }
+
+    createCard() {
+        this._element = this._getTemplate();
+        this._element.querySelector(this._imageCard).src = this._link;
+        this._element.querySelector(this._imageCard).alt = this._link;
+        this._element.querySelector(this._subCard).textContent = this._name;
+        this._setListener()
         return this._element;
     }
 
-    _handlerLike() {
-        this._element.querySelector('.elements__button')
-            .addEventListener('click', () => this._element
-                .querySelector('.elements__button')
-                .classList.toggle('elements__button-active'))
-    }
-    _deleteCard() {
-        this._element.querySelector('.elements__delete')
-            .addEventListener('click', () => this._element.remove())
-    }
-    _openImage() {
-        this._photoElement
-        .addEventListener('click', () => {
-            this._popupImage.src = this._link;
-            this._popupImage.alt = this._text;
-            document.querySelector('.popup__subtitle').textContent = this._text;
-            openPopup(document.querySelector('#fullscreen'))
+    _setListener() {
+        this._like = this._element.querySelector(this._likeCard);
+        this._like.addEventListener('click', () => this._like.classList.toggle('elements__button-active'));
+        this._delete = this._element.querySelector(this._deleteCard);
+        this._delete.addEventListener('click', () => this._element.remove());
+        this._openFullScreen = this._element.querySelector(this._imageCard);
+        this._openFullScreen.addEventListener('click', () => {
+            this._openCard()
         })
     }
+    _openCard() {
+        openPopup(document.querySelector('#fullscreen'));
+        const fullscreen = document.querySelector('.popup__fullscreen');
+        fullscreen.querySelector('.popup__image').src = this._link
+        fullscreen.querySelector('.popup__image').alt = this._name
+        fullscreen.querySelector('.popup__subtitle').textContent = this._name
+    }
 }
-
 
 export { Card }
