@@ -1,10 +1,11 @@
 import {openPopup} from './index.js'
 
 class Card {
-    constructor(data, element) {
+    constructor(data, element, popupImage) {
         this._text = data.name;
         this._link = data.link;
         this._cardTemplate = element
+        this._popupImage = popupImage
     }
     
     _getElement() {
@@ -17,8 +18,9 @@ class Card {
 
     generate() {
         this._element = this._getElement();
-        this._element.querySelector('.elements__photo').src = this._link;
-        this._element.querySelector('.elements__photo').alt = this._text;
+        this._photoElement = this._element.querySelector('.elements__photo')
+        this._photoElement.src = this._link;
+        this._photoElement.alt = this._text;
         this._element.querySelector('.elements__subtitle').textContent = this._text;
         this._handlerLike();
         this._deleteCard();
@@ -37,10 +39,10 @@ class Card {
             .addEventListener('click', () => this._element.remove())
     }
     _openImage() {
-        this._element.querySelector('.elements__photo')
+        this._photoElement
         .addEventListener('click', () => {
-            document.querySelector('.popup__image').src = this._link;
-            document.querySelector('.popup__image').alt = this._text;
+            this._popupImage.src = this._link;
+            this._popupImage.alt = this._text;
             document.querySelector('.popup__subtitle').textContent = this._text;
             openPopup(document.querySelector('#fullscreen'))
         })
