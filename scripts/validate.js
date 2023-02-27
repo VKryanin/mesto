@@ -46,7 +46,6 @@ function showError(inputActive, settings) {
     const spanError = inputActive.nextElementSibling
     spanError.classList.add(settings.errorClass)
     spanError.textContent = inputActive.validationMessage;
-    console.log(spanError.textContent.lenght);
     if (spanError.textContent.length > 2) {
         inputActive.classList.add(settings.inputErrorClass);
     }
