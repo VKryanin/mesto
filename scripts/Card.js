@@ -1,17 +1,6 @@
 import { openPopup } from './index.js'
 
 class Card {
-    // constructor(data, cardTemplate, likeCard, deleteCard, imageCard, subCard) {
-    //     this._name = data.name;
-    //     this._link = data.link;
-    //     this._cardTemplate = cardTemplate;
-    //     this._imageCard = imageCard;
-    //     this._deleteCard = deleteCard;
-    //     this._likeCard = likeCard;
-    //     this._subCard = subCard;
-    //     console.log(this._imageCard);
-    //     console.log(this._deleteCard);
-    // }
     constructor(data) {
         this._name = data.name;
         this._link = data.link;
@@ -20,7 +9,9 @@ class Card {
         this._deleteCard = data.delete;
         this._likeCard = data.like;
         this._subCard = data.subtitle;
-        this._fullscreen = fullscreen;
+        this._fullscreen = data.fullscreen;
+        this._fullscreenSubtitle = data.fullscreenSubtitle;
+        this._fullscreenImage = data.fullscreenImage;
     }
 
     _getTemplate() {
@@ -52,10 +43,9 @@ class Card {
     }
     _openCard() {
         openPopup(this._fullscreen);
-        const fullscreen = document.querySelector('.popup__fullscreen');
-        fullscreen.querySelector('.popup__image').src = this._link
-        fullscreen.querySelector('.popup__image').alt = this._name
-        fullscreen.querySelector('.popup__subtitle').textContent = this._name
+        this._fullscreenImage.src = this._link
+        this._fullscreenImage.alt = this._name
+        this._fullscreenSubtitle.textContent = this._name
     }
 }
 
