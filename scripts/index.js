@@ -19,9 +19,19 @@ const popupInputLink = document.querySelector('.popup__input-link');
 const cardsContainer = document.querySelector('.elements__list');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
-const fullscreen = document.querySelector('#fullscreen');
-const fullscreenImage = fullscreen.querySelector('.popup__image');
-const fullscreenSubtitle = fullscreen.querySelector('.popup__subtitle');
+export const fullscreen = document.querySelector('#fullscreen');
+export const fullscreenImage = fullscreen.querySelector('.popup__image');
+export const fullscreenSubtitle = fullscreen.querySelector('.popup__subtitle');
+
+// Спасибо)
+
+const cardSelectors = {
+    template: '#template__card',
+    like: '.elements__button',
+    delete: '.elements__delete',
+    photo: '.elements__photo',
+    subtitle: '.elements__subtitle'
+}
 
 const settings = {
     formSelector: '.popup__form',
@@ -74,7 +84,6 @@ function editProfile(evt) {
 
 const createCard = (data) => {
     const card = new Card(data)
-    // openPopup(card._openCard())
     return card.createCard()
 }
 
@@ -91,14 +100,21 @@ buttonAddCard.addEventListener('click', () => {
 popupCloseAdd.addEventListener('click', () => closePopup(popupAddCard));
 formAdd.addEventListener('submit', e => {
     e.preventDefault();
-    const data = { name: popupInputPlace.value, link: popupInputLink.value, fullscreen: fullscreen, fullscreenImage: fullscreenImage, fullscreenSubtitle: fullscreenSubtitle, template: '#template__card', like: '.elements__button', delete: '.elements__delete', photo: '.elements__photo', subtitle: '.elements__subtitle' };
+    const data = {
+        name: popupInputPlace.value,
+        link: popupInputLink.value,
+        ...cardSelectors
+    };
     cardsContainer.prepend(createCard(data))
     closePopup(popupAddCard)
 })
 
-
 initialCards.reverse().forEach(element => {
-    const data = { name: element.name, link: element.link, fullscreen: fullscreen, fullscreenImage: fullscreenImage, fullscreenSubtitle: fullscreenSubtitle, template: '#template__card', like: '.elements__button', delete: '.elements__delete', photo: '.elements__photo', subtitle: '.elements__subtitle' };
+    const data = {
+        name: element.name,
+        link: element.link,
+        ...cardSelectors
+    };
     cardsContainer.append(createCard(data))
 });
 popupCloseImage.addEventListener('click', () => { closePopup(popupFullscreen) });
@@ -110,10 +126,6 @@ const profileForm = new FormValidator(settings, formEdit)
 profileForm.enableValidation();
 const addCardForm = new FormValidator(settings, formAdd);
 addCardForm.enableValidation();
-
-
-
-
 
 
 

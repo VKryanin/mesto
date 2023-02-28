@@ -1,4 +1,6 @@
-import { openPopup } from './index.js'
+import { openPopup, fullscreen, fullscreenSubtitle, fullscreenImage } from './index.js'
+
+
 
 class Card {
     constructor(data) {
@@ -9,9 +11,9 @@ class Card {
         this._deleteCard = data.delete;
         this._likeCard = data.like;
         this._subCard = data.subtitle;
-        this._fullscreen = data.fullscreen;
-        this._fullscreenSubtitle = data.fullscreenSubtitle;
-        this._fullscreenImage = data.fullscreenImage;
+        // this._fullscreen = fullscreen;
+        // this._fullscreenSubtitle = fullscreenSubtitle;
+        // this._fullscreenImage = fullscreenImage;
     }
 
     _getTemplate() {
@@ -42,10 +44,10 @@ class Card {
         })
     }
     _openCard() {
-        openPopup(this._fullscreen);
-        this._fullscreenImage.src = this._link
-        this._fullscreenImage.alt = this._name
-        this._fullscreenSubtitle.textContent = this._name
+        openPopup(fullscreen);
+        fullscreenImage.src = this._link
+        fullscreenImage.alt = this._name
+        fullscreenSubtitle.textContent = this._name
     }
 }
 
