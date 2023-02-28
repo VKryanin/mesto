@@ -20,6 +20,7 @@ class Card {
         this._deleteCard = data.delete;
         this._likeCard = data.like;
         this._subCard = data.subtitle;
+        this._fullscreen = fullscreen;
     }
 
     _getTemplate() {
@@ -50,7 +51,7 @@ class Card {
         })
     }
     _openCard() {
-        openPopup(document.querySelector('#fullscreen'));
+        openPopup(this._fullscreen);
         const fullscreen = document.querySelector('.popup__fullscreen');
         fullscreen.querySelector('.popup__image').src = this._link
         fullscreen.querySelector('.popup__image').alt = this._name

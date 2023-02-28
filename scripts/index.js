@@ -19,6 +19,7 @@ const popupInputLink = document.querySelector('.popup__input-link');
 const cardsContainer = document.querySelector('.elements__list');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
+const fullscreen = document.querySelector('#fullscreen');
 
 const settings = {
     formSelector: '.popup__form',
@@ -87,14 +88,13 @@ buttonAddCard.addEventListener('click', () => {
 popupCloseAdd.addEventListener('click', () => closePopup(popupAddCard));
 formAdd.addEventListener('submit', e => {
     e.preventDefault();
-    const data = { name: popupInputPlace.value, link: popupInputLink.value,  template: '#template__card', like: '.elements__button', delete: '.elements__delete', photo: '.elements__photo', subtitle: '.elements__subtitle'};
+    const data = { name: popupInputPlace.value, link: popupInputLink.value, fullscreen: fullscreen, template: '#template__card', like: '.elements__button', delete: '.elements__delete', photo: '.elements__photo', subtitle: '.elements__subtitle'};
     cardsContainer.prepend(createCard(data))
     closePopup(popupAddCard)
 })
 
-//Если работа принята, подскажите пожалуйста как правильно указывать объект на 90 и 97 строчках. а то как то сложно читать код в таком виде =)
 initialCards.reverse().forEach(element => {
-    const data = { name: element.name, link: element.link,  template: '#template__card', like: '.elements__button', delete: '.elements__delete', photo: '.elements__photo', subtitle: '.elements__subtitle'};
+    const data = { name: element.name, link: element.link, fullscreen: fullscreen, template: '#template__card', like: '.elements__button', delete: '.elements__delete', photo: '.elements__photo', subtitle: '.elements__subtitle'};
     cardsContainer.append(createCard(data))
 });
 popupCloseImage.addEventListener('click', () => { closePopup(popupFullscreen) });
