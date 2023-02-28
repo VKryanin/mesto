@@ -108,7 +108,6 @@ formAdd.addEventListener('submit', e => {
     cardsContainer.prepend(createCard(data))
     closePopup(popupAddCard)
 })
-
 initialCards.reverse().forEach(element => {
     const data = {
         name: element.name,
