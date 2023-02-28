@@ -24,6 +24,7 @@ export const fullscreenImage = fullscreen.querySelector('.popup__image');
 export const fullscreenSubtitle = fullscreen.querySelector('.popup__subtitle');
 
 // Спасибо)
+// А допустим передавать через cardSelectors: fullscreen, fullscreenImage, fullscreenSubtitle допустимо?
 
 const cardSelectors = {
     template: '#template__card',
