@@ -78,7 +78,7 @@ popupEdit.setEventListeners();
 const renderInitialCards = new Section({
     items: initialCards,
     renderer: (data) => {
-        const card = new Card(data);
+        const card = new Card(data, handleCardClick);
         renderInitialCards.addItem(card.createCard());
     }
 }, '.elements__list');
@@ -86,7 +86,7 @@ renderInitialCards.renderItems();
 
 // Функция обавления карточек
 const createCard = (data) => {
-    const card = new Card(data)
+    const card = new Card(data, handleCardClick)
     return card.createCard()
 }
 
@@ -97,7 +97,7 @@ const addCard = new PopupWithForm(popupAddCard, {
             name: popupInputPlace.value,
             link: popupInputLink.value,
             ...cardSelectors
-        }));
+        }, handleCardClick));
         addCard.close();
     }
 });
@@ -126,6 +126,7 @@ buttonEditProfile.addEventListener('click', function () {
     popupEdit.open();
     profileTitle.setAttribute('value', userInfo.getUserInfo().username);
     profileSubtitle.setAttribute('value', userInfo.getUserInfo().description);
+    profileForm.enableValidation();
 });
 
 // Событие добавления карточки
@@ -133,47 +134,6 @@ buttonAddCard.addEventListener('click', function () {
     addCard.open();
     addCardForm.resetValidate();
 });
-
-// const AddCard = new PopupWithForm(popupAddCard, {
-//     callbackFormSubmit: () => {
-//         const renderInitialCards = new Section({
-//             items: {
-//                 name: popupInputPlace.value,
-//                 link: popupInputLink.value
-//             },
-//             renderer: (data) => {
-//                 const card = new Card(data);
-//                 renderInitialCards.addItem(card.createCard());
-//             }
-//         }, '.elements__list');
-//         AddCard.close();
-//     }
-// }
-// );
-// AddCard.setEventListeners();
-
-// buttonEditProfile.addEventListener('click', () => {
-//     profileForm.resetValidate();
-//     popupEdit.open()
-//     popupEdit.setEventListeners()
-// });
-// buttonAddCard.addEventListener('click', () => {
-//     addCardForm.resetValidate();
-//     AddCard.open();
-//     AddCard.setEventListeners()
-// });
-
-// formAdd.addEventListener('submit', e => {
-//     e.preventDefault();
-//     const data = {
-//         name: popupInputPlace.value,
-//         link: popupInputLink.value,
-//         ...cardSelectors
-//     };
-//     const newCard = new PopupWithImage(popupAddCard)
-//     newCard.open()
-//     cardsContainer.prepend(createCard(data))
-// })
 
 
 
