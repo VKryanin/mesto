@@ -103,18 +103,6 @@ const addCard = new PopupWithForm(popupAddCard, {
 });
 addCard.setEventListeners();
 
-// Добавление новой карточки
-// const addCard = new PopupWithForm(elementsList, {
-//     callbackFormSubmit: () => {
-//         renderInitialCards.addItem(renderCard({
-//             name: nameCardInput.value,
-//             link: linkCardInput.value
-//         }, '#template__card', handleCardClick));
-//         addCard.close();
-//     }
-// });
-// addCard.setEventListeners();
-
 // Валидация 
 const profileForm = new FormValidator(settings, formEdit)
 profileForm.enableValidation();
@@ -124,8 +112,8 @@ addCardForm.enableValidation();
 //Событие редактирования профиля
 buttonEditProfile.addEventListener('click', function () {
     popupEdit.open();
-    profileTitle.setAttribute('value', userInfo.getUserInfo().username);
-    profileSubtitle.setAttribute('value', userInfo.getUserInfo().description);
+    popupInputName.setAttribute('value', userInfo.getUserInfo().username);
+    popupInputInfo.setAttribute('value', userInfo.getUserInfo().description);
     profileForm.enableValidation();
 });
 
