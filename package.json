@@ -4,7 +4,8 @@
   "description": "*Проект посвящен интересным местам.*\r Проект включает в себя: \r * Фотографии интересных мест.\r * Отметку нравится.\r * Возможность изменить профиль.\r * Добавление и удаление фотографий.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.3",
     "webpack": "^5.76.1",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   }
 }

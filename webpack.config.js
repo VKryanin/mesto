@@ -12,6 +12,12 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
     },
     mode: 'development',
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'build')
+        },
+        open: true,
+    },
     module: {
         rules: [
             {
