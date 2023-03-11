@@ -9,17 +9,22 @@ module.exports = {
     },
     output: {
         filename: 'main.js',
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'dist'),
     },
     mode: 'development',
     devServer: {
         static: {
-            directory: path.resolve(__dirname, 'build')
+            directory: path.resolve(__dirname, 'dist')
         },
         open: true,
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                use: 'babel-loader',
+                exclude: '/node_modules/'
+            },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/,
                 type: 'asset/resource',
