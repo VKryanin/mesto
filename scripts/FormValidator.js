@@ -1,11 +1,3 @@
-// const settings = {
-//     formSelector: '.popup__form', форма
-//     inputSelector: '.popup__input', инпут
-//     submitButtonSelector: '.popup__submit-button', кнопка
-//     inactiveButtonClass: 'popup__button_disabled', кнопка не активна
-//     inputErrorClass: 'popup__input_type_error', ошибка в инпут
-//     errorClass: 'popup__error_visible' показ спан?
-// }
 
 class FormValidator {
     constructor(settings, form) {

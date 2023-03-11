@@ -2,7 +2,6 @@ import { initialCards } from "./cards.js";
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 import { Section } from './Section.js';
-import { Popup } from "./Popup.js";
 import { PopupWithForm } from './PopupWithForm.js';
 import { PopupWithImage } from './PopupWithImage.js'
 import { UserInfo } from './UserInfo.js'
@@ -10,10 +9,6 @@ import { UserInfo } from './UserInfo.js'
 const popupAddCard = document.querySelector('#add-card');
 const popupFullscreen = document.querySelector('#fullscreen');
 const popupEditProfile = document.querySelector('#edit-profile');
-const elementsList = document.querySelector('.elements__list')
-const popupCloseForm = document.querySelector('.close-edit');
-const popupCloseAdd = document.querySelector('.close-add');
-const popupCloseImage = document.querySelector('.close-image');
 const formEdit = document.querySelector('.edit-form');
 const formAdd = document.querySelector('.add-form');
 const profileTitle = document.querySelector('.profile__title');
@@ -22,10 +17,8 @@ const popupInputName = document.querySelector('.popup__input-name');
 const popupInputInfo = document.querySelector('.popup__input-info');
 const popupInputPlace = document.querySelector('.popup__input-place');
 const popupInputLink = document.querySelector('.popup__input-link');
-const cardsContainer = document.querySelector('.elements__list');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
-const profileName = document.querySelector('.profile__name');
 export const fullscreen = document.querySelector('#fullscreen');
 export const fullscreenImage = fullscreen.querySelector('.popup__image');
 export const fullscreenSubtitle = fullscreen.querySelector('.popup__subtitle');
