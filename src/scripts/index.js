@@ -78,7 +78,7 @@ const renderInitialCards = new Section({
 }, '.elements__list');
 renderInitialCards.renderItems();
 
-// Функция обавления карточек
+// Функция добавления карточек
 const createCard = (data) => {
     const card = new Card(data, handleCardClick)
     return card.createCard()
