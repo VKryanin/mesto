@@ -1,9 +1,10 @@
-import { openPopup, fullscreen, fullscreenSubtitle, fullscreenImage } from './index.js'
+// import { openPopup, fullscreen, fullscreenSubtitle, fullscreenImage } from './index.js'
+import { fullscreen, fullscreenSubtitle, fullscreenImage } from './index.js'
 
 
 
 class Card {
-    constructor(data) {
+    constructor(data, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardTemplate = data.template;
@@ -11,9 +12,7 @@ class Card {
         this._deleteCard = data.delete;
         this._likeCard = data.like;
         this._subCard = data.subtitle;
-        // this._fullscreen = fullscreen;
-        // this._fullscreenSubtitle = fullscreenSubtitle;
-        // this._fullscreenImage = fullscreenImage;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -39,9 +38,7 @@ class Card {
         this._delete = this._element.querySelector(this._deleteCard);
         this._delete.addEventListener('click', () => this._element.remove());
         this._openFullScreen = this._element.querySelector(this._imageCard);
-        this._openFullScreen.addEventListener('click', () => {
-            this._openCard()
-        })
+        this._openFullScreen.addEventListener('click', () => this._handleCardClick(this._name, this._link))
     }
     _openCard() {
         openPopup(fullscreen);
