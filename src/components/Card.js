@@ -1,5 +1,5 @@
 // import { openPopup, fullscreen, fullscreenSubtitle, fullscreenImage } from './index.js'
-import { fullscreen, fullscreenSubtitle, fullscreenImage } from '../../pages/index.js'
+import { fullscreen, fullscreenSubtitle, fullscreenImage } from '../pages/index.js'
 
 
 
