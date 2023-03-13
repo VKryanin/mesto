@@ -11,8 +11,6 @@ import './index.css';
 
 const formEdit = document.querySelector('.edit-form');
 const formAdd = document.querySelector('.add-form');
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupInputName = document.querySelector('.popup__input-name');
 const popupInputInfo = document.querySelector('.popup__input-info');
 const popupInputPlace = document.querySelector('.popup__input-place');
