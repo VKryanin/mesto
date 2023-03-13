@@ -21,19 +21,17 @@ const buttonEditProfile = document.querySelector('.profile__button-edit');
 // Всплывающего изображения
 const popupImageZoom = new PopupWithImage('#fullscreen');
 popupImageZoom.setEventListeners();
-
-// Увеличение картинки
 const handleCardClick = function (name, image) {
     popupImageZoom.open(name, image);
 }
 
-// Получение данных пользователя
+// данные пользователя
 const userInfo = new UserInfo({
     usernameSelector: '.profile__title',
     userDescriptionSelector: '.profile__subtitle'
 });
 
-// Редактирования профиля
+// Профиль
 const popupEdit = new PopupWithForm('#edit-profile', {
     callbackFormSubmit: () => {
         userInfo.setUserInfo({
@@ -45,7 +43,7 @@ const popupEdit = new PopupWithForm('#edit-profile', {
 })
 popupEdit.setEventListeners();
 
-// Отрисовка начальных карточек
+// Начальные карточки
 const renderInitialCards = new Section({
     items: initialCards,
     renderer: (data) => {
@@ -55,13 +53,13 @@ const renderInitialCards = new Section({
 }, '.elements__list');
 renderInitialCards.renderItems();
 
-// Функция добавления карточек
+// Новые карточки
 const createCard = (data) => {
     const card = new Card(data, handleCardClick)
     return card.createCard()
 }
 
-// Объявление popup добавления новой карточки
+// Добавление карточек
 const addCard = new PopupWithForm('#add-card', {
     callbackFormSubmit: () => {
         renderInitialCards.addItem(createCard({
@@ -80,7 +78,7 @@ profileForm.enableValidation();
 const addCardForm = new FormValidator(settings, formAdd);
 addCardForm.enableValidation();
 
-//Событие редактирования профиля
+//Редактировать профиль
 buttonEditProfile.addEventListener('click', function () {
     popupEdit.open();
     popupInputName.setAttribute('value', userInfo.getUserInfo().username);
@@ -88,7 +86,7 @@ buttonEditProfile.addEventListener('click', function () {
     profileForm.enableValidation();
 });
 
-// Событие добавления карточки
+// Добавление карточки
 buttonAddCard.addEventListener('click', function () {
     addCard.open();
     addCardForm.resetValidate();
