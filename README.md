@@ -14,5 +14,4 @@
 * Адаптивная верстка.
 * БЭМ методология
 
-
 https://vkryanin.github.io/mesto/
