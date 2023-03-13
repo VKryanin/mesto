@@ -4,7 +4,8 @@ import { FormValidator } from '../components/FormValidator.js'
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
-import { UserInfo } from '../components/UserInfo.js'
+import { UserInfo } from '../components/UserInfo.js';
+import { cardSelectors, settings } from "../components/utils/cardSelectors.js";
 import './index.css';
 
 const popupAddCard = document.querySelector('#add-card');
@@ -20,29 +21,9 @@ const popupInputPlace = document.querySelector('.popup__input-place');
 const popupInputLink = document.querySelector('.popup__input-link');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
-export const fullscreen = document.querySelector('#fullscreen');
-export const fullscreenImage = fullscreen.querySelector('.popup__image');
-export const fullscreenSubtitle = fullscreen.querySelector('.popup__subtitle');
-
-export const cardSelectors = {
-    template: '#template__card',
-    like: '.elements__button',
-    delete: '.elements__delete',
-    photo: '.elements__photo',
-    subtitle: '.elements__subtitle'
-}
-
-const settings = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit-button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-}
 
 // Всплывающего изображения
-const popupImageZoom = new PopupWithImage(popupFullscreen);
+const popupImageZoom = new PopupWithImage('#fullscreen');
 popupImageZoom.setEventListeners();
 
 // Увеличение картинки
@@ -57,7 +38,7 @@ const userInfo = new UserInfo({
 });
 
 // Редактирования профиля
-const popupEdit = new PopupWithForm(popupEditProfile, {
+const popupEdit = new PopupWithForm('#edit-profile', {
     callbackFormSubmit: () => {
         userInfo.setUserInfo({
             username: popupInputName.value,
@@ -85,7 +66,7 @@ const createCard = (data) => {
 }
 
 // Объявление popup добавления новой карточки
-const addCard = new PopupWithForm(popupAddCard, {
+const addCard = new PopupWithForm('#add-card', {
     callbackFormSubmit: () => {
         renderInitialCards.addItem(createCard({
             name: popupInputPlace.value,

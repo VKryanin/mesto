@@ -1,4 +1,4 @@
-import { cardSelectors } from "../pages/index.js";
+import { cardSelectors } from "./utils/cardSelectors";
 
 export class Section {
     constructor({ items, renderer }, selector) {

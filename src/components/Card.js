@@ -1,8 +1,3 @@
-// import { openPopup, fullscreen, fullscreenSubtitle, fullscreenImage } from './index.js'
-import { fullscreen, fullscreenSubtitle, fullscreenImage } from '../pages/index.js'
-
-
-
 class Card {
     constructor(data, handleCardClick) {
         this._name = data.name;
@@ -13,6 +8,9 @@ class Card {
         this._likeCard = data.like;
         this._subCard = data.subtitle;
         this._handleCardClick = handleCardClick;
+        this._fullscreen = data.fullscreen;
+        this._fullscreenSubtitle = data.fullscreenSubtitle;
+        this._fullscreenImage = data.fullscreenImage
     }
 
     _getTemplate() {
@@ -34,17 +32,22 @@ class Card {
 
     _setListener() {
         this._like = this._element.querySelector(this._likeCard);
-        this._like.addEventListener('click', () => this._like.classList.toggle('elements__button-active'));
+        this._like.addEventListener('click', () => this._toggleButton());
         this._delete = this._element.querySelector(this._deleteCard);
         this._delete.addEventListener('click', () => this._element.remove());
         this._openFullScreen = this._element.querySelector(this._imageCard);
         this._openFullScreen.addEventListener('click', () => this._handleCardClick(this._name, this._link))
     }
+
+    _toggleButton() {
+        this._like.classList.toggle('elements__button-active')
+    }
+
     _openCard() {
-        openPopup(fullscreen);
-        fullscreenImage.src = this._link
-        fullscreenImage.alt = this._name
-        fullscreenSubtitle.textContent = this._name
+        openPopup(this._fullscreen);
+        document.querySelector(this._fullscreenImage).src = this._link
+        document.querySelector(this._fullscreenImage).alt = this._name
+        document.querySelector(this._fullscreenSubtitle).textContent = this._name
     }
 }
 
