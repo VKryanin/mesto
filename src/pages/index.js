@@ -8,9 +8,7 @@ import { UserInfo } from '../components/UserInfo.js';
 import { cardSelectors, settings } from "../components/utils/cardSelectors.js";
 import './index.css';
 
-const popupAddCard = document.querySelector('#add-card');
-const popupFullscreen = document.querySelector('#fullscreen');
-const popupEditProfile = document.querySelector('#edit-profile');
+
 const formEdit = document.querySelector('.edit-form');
 const formAdd = document.querySelector('.add-form');
 const profileTitle = document.querySelector('.profile__title');
@@ -33,8 +31,8 @@ const handleCardClick = function (name, image) {
 
 // Получение данных пользователя
 const userInfo = new UserInfo({
-    usernameSelector: profileTitle,
-    userDescriptionSelector: profileSubtitle
+    usernameSelector: '.profile__title',
+    userDescriptionSelector: '.profile__subtitle'
 });
 
 // Редактирования профиля
