@@ -8,13 +8,17 @@ module.exports = {
         main: './src/pages/index.js',
     },
     output: {
-        filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+        publicPath: '',
     },
     mode: 'development',
     devServer: {
         static: {
-            directory: path.resolve(__dirname, 'dist')
+            directory: path.resolve(__dirname, './dist'),
+            open: true,
+            compress: true,
+            port: 8080
         },
         open: true,
     },
