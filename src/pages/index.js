@@ -42,12 +42,30 @@ const popupEdit = new PopupWithForm('#edit-profile', {
 })
 popupEdit.setEventListeners();
 
+// Добавление карточек
+const addCard = new PopupWithForm('#add-card', {
+    callbackFormSubmit: () => {
+        renderInitialCards.addItem(
+            createCard(
+                {
+                    name: popupInputPlace.value,
+                    link: popupInputLink.value,
+                    ...cardSelectors
+                }, addCard._getInputValues())
+        )
+        addCard.close();
+    }
+});
+addCard.setEventListeners();
+
+
 // Начальные карточки
 const renderInitialCards = new Section({
     items: initialCards,
     renderer: (data) => {
         const card = new Card(data, handleCardClick);
         renderInitialCards.addItem(card.createCard());
+        // renderInitialCards.addItem(createCard(data))
     }
 }, '.elements__list');
 renderInitialCards.renderItems();
@@ -57,19 +75,6 @@ const createCard = (data) => {
     const card = new Card(data, handleCardClick)
     return card.createCard()
 }
-
-// Добавление карточек
-const addCard = new PopupWithForm('#add-card', {
-    callbackFormSubmit: () => {
-        renderInitialCards.addItem(createCard({
-            name: popupInputPlace.value,
-            link: popupInputLink.value,
-            ...cardSelectors
-        }, handleCardClick));
-        addCard.close();
-    }
-});
-addCard.setEventListeners();
 
 // Валидация 
 const profileForm = new FormValidator(settings, formEdit)
