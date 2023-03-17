@@ -9,12 +9,7 @@ export class Section {
 
     renderItems() {
         this._renderedItems.reverse().forEach(item => {
-            const data = {
-                name: item.name,
-                link: item.link,
-                ...cardSelectors
-            }
-            this._renderer(data);
+            this._renderer(item);
         });
     }
 
@@ -22,4 +17,3 @@ export class Section {
         this._container.prepend(cardElement);
     }
 }
-
