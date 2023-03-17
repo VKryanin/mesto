@@ -84,9 +84,10 @@ addCardForm.enableValidation();
 
 //Редактировать профиль
 buttonEditProfile.addEventListener('click', function () {
+    const userData = userInfo.getUserInfo()
     popupEdit.open();
-    popupInputName.setAttribute('value', userInfo.getUserInfo().username);
-    popupInputInfo.setAttribute('value', userInfo.getUserInfo().description);
+    popupInputName.value = userData.username;
+    popupInputInfo.value = userData.description;    
     profileForm.enableValidation();
 });
 

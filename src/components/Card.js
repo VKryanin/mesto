@@ -27,7 +27,6 @@ class Card {
         this._element.querySelector(this._imageCard).alt = this._name;
         this._element.querySelector(this._subCard).textContent = this._name;
         this._setListener()
-        console.log(this._element);
         return this._element;
     }
 
