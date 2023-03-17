@@ -34,10 +34,9 @@ const userInfo = new UserInfo({
 // Профиль
 const popupEdit = new PopupWithForm('#edit-profile', {
     callbackFormSubmit: () => {
-        userInfo.setUserInfo({
-            username: popupInputName.value,
-            description: popupInputInfo.value
-        });
+        userInfo.setUserInfo(
+            popupEdit._getInputValues()
+        );
         popupEdit.close();
     }
 })
