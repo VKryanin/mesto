@@ -33,9 +33,9 @@ const userInfo = new UserInfo({
 
 // Профиль
 const popupEdit = new PopupWithForm('#edit-profile', {
-    callbackFormSubmit: () => {
+    callbackFormSubmit: (inputValues) => {
         userInfo.setUserInfo(
-            popupEdit._getInputValues()
+            inputValues
         );
         popupEdit.close();
     }
