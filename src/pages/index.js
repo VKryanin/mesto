@@ -58,20 +58,20 @@ const addCard = new PopupWithForm('#add-card', {
 });
 addCard.setEventListeners();
 
-let defaultCards = []
-initialCards.forEach(item => defaultCards.push({...item, ...cardSelectors}))
+// let defaultCards = []
+// initialCards.forEach(item => defaultCards.push({...item, ...cardSelectors}))
 
 // Новые карточки
-const createCard = (data) => {
-    const card = new Card(data, handleCardClick)
+const createCard = (data, cardSelectors) => {
+    const card = new Card({...data, ...cardSelectors}, handleCardClick)
     return card.createCard()
 }
 
 // Начальные карточки
 const renderInitialCards = new Section({
-    items: defaultCards,
+    items: initialCards,
     renderer: (data) => {
-        renderInitialCards.addItem(createCard(data))
+        renderInitialCards.addItem(createCard(data, cardSelectors))
     }
 }, '.elements__list');
 renderInitialCards.renderItems();
