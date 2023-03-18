@@ -1,5 +1,3 @@
-import { cardSelectors } from "./utils/cardSelectors";
-
 export class Section {
     constructor({ items, renderer }, selector) {
         this._renderedItems = items;
