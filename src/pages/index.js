@@ -21,6 +21,7 @@ const buttonEditProfile = document.querySelector('.profile__button-edit');
 // Всплывающего изображения
 const popupImageZoom = new PopupWithImage('#fullscreen');
 popupImageZoom.setEventListeners();
+
 const handleCardClick = function (name, image) {
     popupImageZoom.open(name, image);
 }
@@ -45,12 +46,12 @@ popupEdit.setEventListeners();
 // Добавление карточек
 const addCard = new PopupWithForm('#add-card', {
     callbackFormSubmit: () => {
+        console.log();
         renderInitialCards.addItem(
-            createCard(
-                {
-                    ...addCard._getInputValues(),
-                    ...cardSelectors
-                })
+            createCard({
+                ...addCard._getInputValues(),
+                ...cardSelectors
+            }, handleCardClick)
         )
         addCard.close();
     }
@@ -58,16 +59,17 @@ const addCard = new PopupWithForm('#add-card', {
 addCard.setEventListeners();
 
 // Новые карточки
-const createCard = (data, cardSelectors) => {
-    const card = new Card({ ...data, ...cardSelectors }, handleCardClick)
+const createCard = (data, handleCardClick) => {
+    const card = new Card(data, handleCardClick)
     return card.createCard()
 }
+
 
 // Начальные карточки
 const renderInitialCards = new Section({
     items: initialCards,
-    renderer: (data) => {
-        renderInitialCards.addItem(createCard(data, cardSelectors))
+    renderer: (data, handleCardClick) => {
+        renderInitialCards.addItem(createCard({...data, ...cardSelectors}, handleCardClick))
     }
 }, '.elements__list');
 renderInitialCards.renderItems();
