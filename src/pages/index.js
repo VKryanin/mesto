@@ -50,7 +50,7 @@ const addCard = new PopupWithForm('#add-card', {
                 {
                     ...addCard._getInputValues(),
                     ...cardSelectors
-                },)
+                })
         )
         addCard.close();
     }
