@@ -48,22 +48,18 @@ const addCard = new PopupWithForm('#add-card', {
         renderInitialCards.addItem(
             createCard(
                 {
-                    name: popupInputPlace.value,
-                    link: popupInputLink.value,
+                    ...addCard._getInputValues(),
                     ...cardSelectors
-                }, addCard._getInputValues())
+                },)
         )
         addCard.close();
     }
 });
 addCard.setEventListeners();
 
-// let defaultCards = []
-// initialCards.forEach(item => defaultCards.push({...item, ...cardSelectors}))
-
 // Новые карточки
 const createCard = (data, cardSelectors) => {
-    const card = new Card({...data, ...cardSelectors}, handleCardClick)
+    const card = new Card({ ...data, ...cardSelectors }, handleCardClick)
     return card.createCard()
 }
 
