@@ -68,7 +68,7 @@ const createCard = (data, handleCardClick) => {
 // Начальные карточки
 const renderInitialCards = new Section({
     items: initialCards,
-    renderer: (data, handleCardClick) => {
+    renderer: (data) => {
         renderInitialCards.addItem(createCard({...data, ...cardSelectors}, handleCardClick))
     }
 }, '.elements__list');
