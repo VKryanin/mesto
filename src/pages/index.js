@@ -46,7 +46,6 @@ popupEdit.setEventListeners();
 // Добавление карточек
 const addCard = new PopupWithForm('#add-card', {
     callbackFormSubmit: () => {
-        console.log();
         renderInitialCards.addItem(
             createCard({
                 ...addCard._getInputValues(),
