@@ -124,11 +124,9 @@ const popupAddCard = new PopupWithForm('#add-card', {
 popupAddCard.setEventListeners();
 //Удаление карточки
 const popupNotificationDelete = new popupNotification("#delete-card", {
-    callbackNotice: (cardElement, cardId) => {
-        console.log(cardElement);
+    callbackNotification: (cardElement, cardId) => {
         api.deleteCard(cardId)
             .then(() => {
-                console.log(cardElement);
                 cardElement.remove();
                 popupNotificationDelete.close();
                 
