@@ -11,6 +11,7 @@ class Card {
         this._cardDelete = handleActions.handleCardDelete;
         this._putLike = handleActions.handleCardLike;
         this._removeLike = handleActions.handleCardDeleteLike;
+        
     }
 
     _deleteCard() {
@@ -25,9 +26,9 @@ class Card {
             this.likeSelector.textContent = this._likeArea.length;
         }
         if (this._likedCard()) {
-            this._likeIcon.classList.add('cards__like_active');
+            this._likeIcon.classList.add('elements__button-active');
         } else {
-            this._likeIcon.classList.remove('cards__like_active');
+            this._likeIcon.classList.remove('elements__button-active');
         }
     }
 
@@ -68,7 +69,7 @@ class Card {
     }
 
     _addEventHandlers = () => {
-        this._likeIcon.addEventListener('click', () => this._likedCard())
+        this._likeIcon.addEventListener('click', () => this._toggleLike())
         this._elementImages.addEventListener('click', () => this._cardZoom(this._cardName, this._cardImage));
         if (this._userId === this._authorId) {
             this._deleteIcon.addEventListener('click', () => this._cardDelete(this._cardElement, this._cardId, this._deleteCard));

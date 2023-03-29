@@ -2,6 +2,7 @@ export class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
         this._popupItem = document.querySelector(this._popupSelector)
+        this._sendButton = this._popupItem.querySelector('.popup__submit-button');
         this._handleEscClose = this._handleEscClose.bind(this)
     }
 

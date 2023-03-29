@@ -55,20 +55,20 @@ export class Api {
     }
 
     addNewCard({ name, link }) {
-        return fetch(`${this._url}cards/`, {
+        return fetch(`${this._url}cards`, {
             headers: this._headers,
             method: 'POST',
             body: JSON.stringify({ name, link })
         })
             .then(res => {
-                return this.__serverResponse(res);
+                return this._serverResponse(res);
             })
     }
 
     deleteCard(cardId) {
-        return fetch(`${this._url}cards/${cardId}/`, {
+        return fetch(`${this._url}cards/${cardId}`, {
             headers: this._headers,
-            method: 'DELETE'
+            method: 'DELETE',
         })
             .then(res => {
                 return this._serverResponse(res);

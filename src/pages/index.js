@@ -5,12 +5,13 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { popupNotification } from '../components/PopupNotification.js';
 import { UserInfo } from '../components/UserInfo.js';
-import { settings } from "../components/utils/cardSelectors.js";
+import { cardSelectors, settings } from "../components/utils/cardSelectors.js";
 import { config } from '../components/utils/apiConfig.js';
 import { Api } from "../components/Api.js";
 import './index.css';
 
 const formEdit = document.querySelector('.edit-form');
+const avatarEdit = document.querySelector('.edit-avatar')
 const formAdd = document.querySelector('.add-form');
 const popupInputName = document.querySelector('.popup__input-name');
 const popupInputInfo = document.querySelector('.popup__input-info');
@@ -34,7 +35,7 @@ const renderCard = function (CardObj) {
     const renderCardItem = new Card(CardObj, '#template__card', userId, { cardId: CardObj._id, authorId: CardObj.owner._id, },
         {
             handleCardZoom: (name, image) => { popupImageZoom.open(name, image) },
-            handleCardDelete: (cardObject, cardId) => { popupNoticeDelete.open(cardObject, cardId) },
+            handleCardDelete: (CardObj, cardId) => { popupNotificationDelete.open(CardObj, cardId) },
             handleCardLike: (cardId) => {
                 api.addCardLike(cardId)
                     .then((res) => {
@@ -74,9 +75,10 @@ Promise.all([api.getProfile(), api.getCards()])
     })
     .catch((err) => { console.log(`${err}`) })
 
+//Изменение аватара
 const popupEditeAvatar = new PopupWithForm('#avatar-popup', {
     callbackFormSubmit: (userProfileData) => {
-        popupEditeAvatar.savingProgress(); apiConnect.sendAvatarData(userProfileData)
+        popupEditeAvatar.savingProgress(); api.patchUserPhoto(userProfileData)
             .then((res) => {
                 userInfo.setUserAvatar(res.avatar);
             })
@@ -94,7 +96,7 @@ popupEditeAvatar.setEventListeners();
 const popupEditeProfile = new PopupWithForm('#edit-profile', {
     callbackFormSubmit: (userProfileData) => {
         popupEditeProfile.savingProgress();
-        apiConnect.sendUserData(userProfileData)
+        api.patchUserData(userProfileData)
             .then((res) => { userInfo.setUserInfo({ username: res.name, description: res.about }) })
             .catch((err) => { console.log(`Ошибка при редактирование, ${err}`) })
             .finally(() => {
@@ -110,7 +112,7 @@ popupEditeProfile.setEventListeners();
 const popupAddCard = new PopupWithForm('#add-card', {
     callbackFormSubmit: (formValues) => {
         popupAddCard.savingProgress();
-        apiConnect.addNewCard({ name: formValues.placename, link: formValues.placeimage })
+        api.addNewCard({ name: formValues.name, link: formValues.link })
             .then((card) => { renderInitialCards.addItem(renderCard(card)) })
             .catch((err) => { console.log(`Ошибка при добавлении карточки, ${err}`) })
             .finally(() => {
@@ -120,15 +122,15 @@ const popupAddCard = new PopupWithForm('#add-card', {
     }
 });
 popupAddCard.setEventListeners();
-
-const popupNoticeDelete = new popupNotification("#delete-card", {
+//Удаление карточки
+const popupNotificationDelete = new popupNotification("#delete-card", {
     callbackNotice: (cardElement, cardId) => {
-        apiConnect.deleteCard(cardId)
-            .then(() => { popupNoticeDelete.close(); cardElement.remove(); })
+        api.deleteCard(cardId)
+            .then(() => { popupNotificationDelete.close(); cardElement.remove(); })
             .catch((err) => { console.log(`Ошибка при удалении, ${err}`) })
     }
 });
-popupNoticeDelete.setEventListeners();
+popupNotificationDelete.setEventListeners();
 
 // Слушатель на иконку редактирования профиля
 buttonEditProfile.addEventListener('click', function () {
@@ -141,7 +143,7 @@ buttonEditProfile.addEventListener('click', function () {
 // Слушатель на иконку изменения аватара
 profileAvatarEdit.addEventListener('click', function () {
     popupEditeAvatar.open();
-    profileForm.resetValidate();
+    editAvatarForm.resetValidate();
 });
 // Слушатель на иконку добавления карточки
 buttonAddCard.addEventListener('click', function () {
@@ -153,12 +155,13 @@ buttonAddCard.addEventListener('click', function () {
 const popupImageZoom = new PopupWithImage('#fullscreen');
 popupImageZoom.setEventListeners();
 
-
 // Валидация 
 const profileForm = new FormValidator(settings, formEdit)
 profileForm.enableValidation();
 const addCardForm = new FormValidator(settings, formAdd);
 addCardForm.enableValidation();
+const editAvatarForm = new FormValidator(settings, avatarEdit);
+editAvatarForm.enableValidation();
 
 
 
