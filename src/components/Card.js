@@ -11,11 +11,10 @@ class Card {
         this._cardDelete = handleActions.handleCardDelete;
         this._putLike = handleActions.handleCardLike;
         this._removeLike = handleActions.handleCardDeleteLike;
-        
     }
 
     _deleteCard() {
-        this._element.remove()
+        this._cardElement.remove()
     }
 
     renderCardLike(card) {

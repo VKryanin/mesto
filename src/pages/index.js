@@ -125,8 +125,14 @@ popupAddCard.setEventListeners();
 //Удаление карточки
 const popupNotificationDelete = new popupNotification("#delete-card", {
     callbackNotice: (cardElement, cardId) => {
+        console.log(cardElement);
         api.deleteCard(cardId)
-            .then(() => { popupNotificationDelete.close(); cardElement.remove(); })
+            .then(() => {
+                console.log(cardElement);
+                cardElement.remove();
+                popupNotificationDelete.close();
+                
+            })
             .catch((err) => { console.log(`Ошибка при удалении, ${err}`) })
     }
 });
