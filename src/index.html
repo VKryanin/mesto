@@ -15,7 +15,8 @@
     <main>
         <section class="profile">
             <div class="profile__container">
-                <img class="profile__avatar" src="<%=require('./images/Jacques_Yves.jpg')%>" alt="Аватар пользователя">
+                <img class="profile__avatar" src="#" alt="Аватар пользователя">
+                <button type="button" class="profile__avatar-edit" aria-label="Редактировать аватар профиля"></button>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <button type="button" class="profile__button-edit profile__button"
@@ -38,11 +39,11 @@
             <button type="button" class="popup__close-form close-edit"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form name="edit-profile" class="popup__form edit-form" novalidate>
-                <input name="username" class="popup__input popup__input-name" id="user-name" placeholder="Место для имени"
-                    type="text" minlength="2" maxlength="40" required>
+                <input name="username" class="popup__input popup__input-name" id="user-name"
+                    placeholder="Место для имени" type="text" minlength="2" maxlength="40" required>
                 <span class="popup__span user-name-error popup__text-error"></span>
-                <input name="description" class="popup__input popup__input-info" id="user-info" placeholder="Род дейтельности"
-                    type="text" minlength="2" maxlength="200" required>
+                <input name="description" class="popup__input popup__input-info" id="user-info"
+                    placeholder="Род дейтельности" type="text" minlength="2" maxlength="200" required>
                 <span class="popup__span popup__text-error user-info-error"></span>
                 <button type="submit" class="popup__submit-button send-edit" disabled>Сохранить</button>
             </form>
@@ -59,8 +60,28 @@
                 <input name="link" class="popup__input popup__input-link" id="link" placeholder="Ссылка на картинку"
                     type="url" required>
                 <span class="popup__span popup__text-error link-error"></span>
-                <button type="submit" class="popup__submit-button send-add"
-                    disabled>Создать</button>
+                <button type="submit" class="popup__submit-button send-add" disabled>Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup" id="delete-card">
+        <div class="popup__container popup__delete-card">
+            <button type="button" class="popup__close-form close-add"></button>
+            <h2 class="popup__title">Вы уверены?</h2>
+            <form class="popup__form remove-card" name="delete-card" novalidate>
+                <button type="submit" class="popup__submit-button delete-card" aria-label="Сохранить">Да</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup" id="avatar-popup">
+        <div class="popup__container popup__edit-avatar">
+            <button type="button" class="popup__close-form close-avatar"></button>
+            <h3 class="popup__title">Обновить аватар</h3>
+            <form name="user-avatar" class="popup__form edit-avatar" novalidate>
+                <input name="avatar" class="popup__input popup__input-avatar" id="avatar-input"
+                    placeholder="Введите ссылку на аватар" type="url" minlength="2" maxlength="200" required>
+                <span class="popup__span popup__text-error avatar-error"></span>
+                <button type="submit" class="popup__submit-button send-avatar">Сохранить</button>
             </form>
         </div>
     </div>
@@ -78,7 +99,11 @@
             <img class="elements__photo" src="#" alt="#">
             <div class="elements__info">
                 <p class="elements__subtitle"></p>
-                <button class="elements__button"></button>
+                <div class="card__like-wrapper">
+                    <button class="elements__button"></button>
+                    <p class="cards__like-count"></p>
+                </div>
+
             </div>
             <button class="elements__delete"></button>
         </li>
