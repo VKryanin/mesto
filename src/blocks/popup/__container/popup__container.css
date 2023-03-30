@@ -20,4 +20,7 @@
         padding: 25px 22px 25px;
         margin: 123px auto;
     }
+    .popup__container .popup__text-error {
+        margin-bottom: 0;
+    }
 }
