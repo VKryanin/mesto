@@ -15,7 +15,7 @@ class Card {
 
     deleteCard() {
         this._element = null;
-        // this._cardElement.remove()
+        this._cardElement.remove()
     }
     
     createCard() {

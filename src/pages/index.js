@@ -120,9 +120,9 @@ const popupNotificationDelete = new popupNotification("#delete-card", {
     callbackNotification: (cardElement, cardId) => {
         api.deleteCard(cardId)
             .then(() => {
-                cardElement.remove();
+                // debugger;
+                cardElement.deleteCard();
                 popupNotificationDelete.close();
-
             })
             .catch((err) => { console.log(`Ошибка при удалении, ${err}`) })
     }
