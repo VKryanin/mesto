@@ -4,8 +4,8 @@ export class Api {
         this._headers = config.headers;
         this._authorization = config.authorization
     }
-
-    _serverResponse(res) {
+    // _getResponseData
+    _getResponseData(res) {
         if (res.ok) {
             return res.json();
         }
@@ -19,7 +19,7 @@ export class Api {
             headers: this._headers,
         })
             .then(res => {
-                return this._serverResponse(res);
+                return this._getResponseData(res);
             })
     }
 
@@ -30,7 +30,7 @@ export class Api {
             body: JSON.stringify({ name: profileData.username, about: profileData.description })
         })
             .then(res => {
-                return this._serverResponse(res);
+                return this._getResponseData(res);
             })
     }
 
@@ -41,7 +41,7 @@ export class Api {
             body: JSON.stringify({ avatar: photoLink.avatar })
         })
             .then(res => {
-                return this._serverResponse(res);
+                return this._getResponseData(res);
             })
     }
 
@@ -50,7 +50,7 @@ export class Api {
             headers: this._headers
         })
             .then(res => {
-                return this._serverResponse(res);
+                return this._getResponseData(res);
             })
     }
 
@@ -61,7 +61,7 @@ export class Api {
             body: JSON.stringify({ name, link })
         })
             .then(res => {
-                return this._serverResponse(res);
+                return this._getResponseData(res);
             })
     }
 
@@ -71,7 +71,7 @@ export class Api {
             method: 'DELETE',
         })
             .then(res => {
-                return this._serverResponse(res);
+                return this._getResponseData(res);
             })
     }
 
@@ -81,7 +81,7 @@ export class Api {
             method: 'PUT'
         })
             .then(res => {
-                return this._serverResponse(res);
+                return this._getResponseData(res);
             })
     }
 
@@ -91,7 +91,7 @@ export class Api {
             method: 'DELETE'
         })
             .then(res => {
-                return this._serverResponse(res);
+                return this._getResponseData(res);
             })
     }
 

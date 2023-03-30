@@ -1,14 +1,15 @@
 export class UserInfo {
-    constructor({ usernameSelector, userDescriptionSelector }) {
+    constructor({ usernameSelector, userDescriptionSelector, userAvatarLink }) {
         this._username = document.querySelector(usernameSelector);
         this._userDescription = document.querySelector(userDescriptionSelector);
-        this._avatarLink = document.querySelector('.profile__avatar');
+        this._avatarLink = document.querySelector(userAvatarLink);
     }
 
     getUserInfo() {
         return {
             username: this._username.textContent,
-            description: this._userDescription.textContent
+            description: this._userDescription.textContent,
+            avatar: this._avatarLink.link
         };
     }
 

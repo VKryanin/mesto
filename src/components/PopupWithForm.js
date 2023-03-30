@@ -24,6 +24,14 @@ export class PopupWithForm extends Popup {
         });
     }
 
+    setLoadingButtonText() {
+        this._buttonSend.textContent = 'Сохранение...'
+    }
+    
+    resetButtonText() {
+        this._buttonSend.textContent = 'Сохранить'
+    }
+
     close() {
         super.close();
         this._popupFormItem.reset();

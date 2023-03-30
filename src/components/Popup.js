@@ -2,10 +2,10 @@ export class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
         this._popupItem = document.querySelector(this._popupSelector)
-        this._sendButton = this._popupItem.querySelector('.popup__submit-button');
+        this._buttonSend = this._popupItem.querySelector('.popup__submit-button');
         this._handleEscClose = this._handleEscClose.bind(this)
     }
-
+    
     open() {
         this._popupItem.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
@@ -28,13 +28,5 @@ export class Popup {
                 this.close();
             }
         });
-    }
-
-    savingProgress() {
-        this._sendButton.textContent = 'Сохранение...'
-    }
-
-    saveText() {
-        this._sendButton.textContent = 'Сохранить'
     }
 }

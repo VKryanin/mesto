@@ -7,8 +7,8 @@ export class popupNotification extends Popup {
         this._callbackNotification = callbackNotification;
     }
 
-    open(cardObj, cardId) {
-        this._cardObj = cardObj;
+    open(cardData, cardId) {
+        this._cardData = cardData;
         this._cardId = cardId;
         super.open()
     }
@@ -16,7 +16,7 @@ export class popupNotification extends Popup {
     setEventListeners() {
         this._submitButton.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._callbackNotification(this._cardObj, this._cardId);
+            this._callbackNotification(this._cardData, this._cardId);
         })
         super.setEventListeners();
     }
