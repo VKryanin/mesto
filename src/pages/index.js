@@ -27,7 +27,7 @@ const cardCreate = function (cardData) {
     const renderCardItem = new Card(cardData, '#template__card', userId, { cardId: cardData._id, authorId: cardData.owner._id, },
         {
             handleCardZoom: (name, image) => { popupImageZoom.open(name, image) },
-            handleCardDelete: (cardData, cardId) => { popupNotificationDelete.open(cardData, cardId) },
+            handleCardDelete: (cardData, cardId) => { popupNotificationDelete.open(renderCardItem, cardData, cardId) },
             handleCardLike: (cardId) => {
                 api.addCardLike(cardId)
                     .then((res) => {
@@ -121,7 +121,7 @@ const popupNotificationDelete = new popupNotification("#delete-card", {
         api.deleteCard(cardId)
             .then(() => {
                 // debugger;
-                cardElement.deleteCard();
+                popupNotificationDelete.parentCard.deleteCard();
                 popupNotificationDelete.close();
             })
             .catch((err) => { console.log(`Ошибка при удалении, ${err}`) })
