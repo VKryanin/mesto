@@ -44,7 +44,6 @@ const createCard = function (cardData) {
             handleCardLike: (cardId) => {
                 api.addCardLike(cardId)
                     .then((res) => {
-                        console.log(cardId);
                         card.renderCardLike(res)
                     })
                     .catch((err) => {
