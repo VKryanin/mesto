@@ -7,11 +7,11 @@ export class PopupNotification extends Popup {
         this._callbackNotification = callbackNotification;
     }
 
-    open(el,cardData, cardId) {
+    open(el, cardData, cardId) {
         this._cardData = cardData;
         this._cardId = cardId;
         this.parentCard = el;
-        // this._card = card._cardId;
+
         super.open()
     }
 
