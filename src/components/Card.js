@@ -12,18 +12,19 @@ class Card {
         this._putLike = handleActions.handleCardLike;
         this._removeLike = handleActions.handleCardDeleteLike;
     }
-
+    // "_element - это был пример, а данном случае, элемент карточки хранится в свойстве _card"
+    // Это смешно, спасибо за совет))
     deleteCard() {
-        this._element = null;
+        this._card = null;
         this._cardElement.remove()
     }
-    
+
     createCard() {
         this._cardElement = this._getTemplate();
         this._elementImages = this._cardElement.querySelector('.elements__photo');
         this._elementName = this._cardElement.querySelector('.elements__subtitle');
         this._buttonLike = this._cardElement.querySelector('.elements__button');
-        this._deleteIcon = this._cardElement.querySelector('.elements__delete');
+        this._iconDelete = this._cardElement.querySelector('.elements__delete');
         this.likesCounter = this._cardElement.querySelector('.cards__like-count');
         this._elementName.textContent = this._cardName;
         this._elementImages.src = this._cardImage;
@@ -47,21 +48,10 @@ class Card {
         }
     }
 
-    //Пока не получилось)
     _isLiked() {
         const userLike = this._likesCount.find((userLike) => userLike._id === this._userId);
         return userLike
-        // let test = this._likesCount.map(element => {
-        //     return element._id;
-        // });
-        // let userLike = test.includes(this._userId)
-        // return userLike
     }
-
-    // _isLiked() { 
-    //     const userLike = this._likeArea.find((userLike) => userLike._id === this._userId); 
-    //     return userLike 
-    // } 
 
     _toggleLike() {
         if (this._isLiked()) {
@@ -83,10 +73,24 @@ class Card {
         this._buttonLike.addEventListener('click', () => this._toggleLike())
         this._elementImages.addEventListener('click', () => this._cardZoom(this._cardName, this._cardImage));
         if (this._userId === this._authorId) {
-            this._deleteIcon.addEventListener('click', () => this._cardDelete(this._cardElement, this._cardId, this.deleteCard));
+            // this._iconDelete.addEventListener('click', () =>
+            //     this._cardDelete(
+            //         this._cardElement,
+            //         this._cardId,
+            //         this.deleteCard
+            //     ));
+            this._iconDelete.addEventListener('click', () =>
+                this._cardDelete(
+                    this.deleteCard
+                    // getId()
+                ));
         } else {
-            this._deleteIcon.remove();
+            this._iconDelete.remove();
         }
+    }
+
+    getId() {
+        return this._cardId
     }
 }
 

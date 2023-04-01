@@ -1,16 +1,17 @@
 import { Popup } from "./Popup";
 
-export class popupNotification extends Popup {
+export class PopupNotification extends Popup {
     constructor(popupSelector, { callbackNotification }) {
         super(popupSelector);
         this._submitButton = this._popupItem.querySelector('.popup__form');
         this._callbackNotification = callbackNotification;
     }
 
-    open(el, cardData, cardId) {
+    open(el,cardData, cardId) {
         this._cardData = cardData;
         this._cardId = cardId;
         this.parentCard = el;
+        // this._card = card._cardId;
         super.open()
     }
 
