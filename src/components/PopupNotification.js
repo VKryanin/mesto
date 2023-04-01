@@ -23,7 +23,7 @@ export class PopupNotification extends Popup {
     setEventListeners() {
         this._submitButton.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._callbackNotification(this._cardData, this._cardId);
+            this._callbackNotification(this._card);
         })
         super.setEventListeners();
     }

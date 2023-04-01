@@ -73,16 +73,9 @@ class Card {
         this._buttonLike.addEventListener('click', () => this._toggleLike())
         this._elementImages.addEventListener('click', () => this._cardZoom(this._cardName, this._cardImage));
         if (this._userId === this._authorId) {
-            // this._iconDelete.addEventListener('click', () =>
-            //     this._cardDelete(
-            //         this._cardElement,
-            //         this._cardId,
-            //         this.deleteCard
-            //     ));
             this._iconDelete.addEventListener('click', () =>
                 this._cardDelete(
                     this
-                    // getId()
                 ));
         } else {
             this._iconDelete.remove();
