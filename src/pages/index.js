@@ -24,24 +24,24 @@ const userInfo = new UserInfo({
 
 //Удаление карточки
 const popupNotificationDelete = new PopupNotification("#delete-card", {
-    callbackNotification: (cardElement, cardId) => {
-        api.deleteCard(cardId)
-            .then(() => {
-                // debugger;
-                popupNotificationDelete.parentCard.deleteCard();
-                popupNotificationDelete.close();
-            })
-            .catch((err) => { console.log(`Ошибка при удалении, ${err}`) })
-    }
-    // callbackNotification: (card) => {
-    //     api.deleteCard(card.getId())
+    // callbackNotification: (cardElement, cardId) => {
+    //     api.deleteCard(cardId)
     //         .then(() => {
     //             // debugger;
-    //             card.deleteCard();
+    //             popupNotificationDelete.parentCard.deleteCard();
     //             popupNotificationDelete.close();
     //         })
     //         .catch((err) => { console.log(`Ошибка при удалении, ${err}`) })
     // }
+    callbackNotification: (card) => {
+        api.deleteCard(card.getId())
+            .then(() => {
+                // debugger;
+                card.deleteCard();
+                popupNotificationDelete.close();
+            })
+            .catch((err) => { console.log(`Ошибка при удалении, ${err}`) })
+    }
 });
 popupNotificationDelete.setEventListeners();
 
@@ -50,7 +50,8 @@ const createCard = function (cardData) {
     const card = new Card(cardData, '#template__card', userId, { cardId: cardData._id, authorId: cardData.owner._id, },
         {
             handleCardZoom: (name, image) => { popupImageZoom.open(name, image) },
-            handleCardDelete: (cardData, cardId) => { popupNotificationDelete.open(card, cardData, cardId) },
+            // handleCardDelete: (cardData, cardId) => { popupNotificationDelete.open(card, cardData, cardId) },
+            handleCardDelete: (card) => { popupNotificationDelete.open(card) },
             handleCardLike: (cardId) => {
                 api.addCardLike(cardId)
                     .then((res) => {
